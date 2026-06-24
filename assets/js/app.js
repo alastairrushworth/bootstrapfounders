@@ -9,19 +9,19 @@
   const $  = (s, r = document) => r.querySelector(s);
 
   const els = {
-    content: $("#content"),
-    nav:     $("#nav"),
-    search:  $("#search"),
-    theme:   $("#themeToggle"),
+    content:   $("#content"),
+    nav:       $("#nav"),
+    search:    $("#search"),
+    theme:     $("#themeToggle"),
     navToggle: $("#navToggle"),
-    scrim:   $("#scrim"),
-    body:    document.body,
+    scrim:     $("#scrim"),
+    body:      document.body,
   };
 
-  // "flag" tags get the accent highlight on cards
+  // these tags get the accent highlight on rows
   const FLAG_TAGS = new Set(["must-read", "must-listen", "must-watch", "must-do", "free"]);
 
-  let activeTag = null;          // current tag filter within a category view
+  let activeTag = null;     // tag filter within a category view
   let searchQuery = "";
 
   /* ── helpers ─────────────────────────────────────────────────────── */
@@ -32,58 +32,57 @@
     DB.categories.reduce((n, c) => n + (DB[c.id]?.length || 0), 0);
 
   const allItemsFlat = () =>
-    DB.categories.flatMap((c) =>
-      (DB[c.id] || []).map((it) => ({ ...it, _cat: c })));
+    DB.categories.flatMap((c) => (DB[c.id] || []).map((it) => ({ ...it, _cat: c })));
 
   function matches(item, q) {
     const hay = (item.name + " " + (item.by || "") + " " + item.desc + " " + (item.tags || []).join(" ")).toLowerCase();
     return q.split(/\s+/).filter(Boolean).every((t) => hay.includes(t));
   }
 
-  /* ── card template ───────────────────────────────────────────────── */
-  function cardHTML(item, catLabel) {
-    const tags = (item.tags || []).map((t) =>
-      `<span class="mini-tag${FLAG_TAGS.has(t) ? " flag" : ""}">${esc(t)}</span>`).join("");
-    const catBadge = catLabel ? `<span class="mini-tag">${esc(catLabel)}</span>` : "";
+  /* ── templates ───────────────────────────────────────────────────── */
+  function rowHTML(item, catLabel) {
+    const tags = [];
+    if (catLabel) tags.push(`<span class="tag">${esc(catLabel.toLowerCase())}</span>`);
+    (item.tags || []).forEach((t) =>
+      tags.push(`<span class="tag${FLAG_TAGS.has(t) ? " flag" : ""}">${esc(t)}</span>`));
     return `
-      <a class="card" href="${esc(item.url)}" target="_blank" rel="noopener">
-        <div class="card-top">
-          <div>
-            <h3>${esc(item.name)}</h3>
-            ${item.by ? `<p class="by">${esc(item.by)}</p>` : ""}
-          </div>
-          <span class="arrow" aria-hidden="true">↗</span>
+      <a class="row" href="${esc(item.url)}" target="_blank" rel="noopener">
+        <div class="row-head">
+          <span class="row-name">${esc(item.name)}</span>
+          ${item.by ? `<span class="row-by">${esc(item.by)}</span>` : ""}
+          <span class="row-arrow" aria-hidden="true">&rarr;</span>
         </div>
-        <p class="desc">${esc(item.desc)}</p>
-        <div class="card-tags">${catBadge}${tags}</div>
+        <p class="row-desc">${esc(item.desc)}</p>
+        <div class="row-tags">${tags.join("")}</div>
+      </a>`;
+  }
+
+  function navRowHTML(href, name, by, desc) {
+    return `
+      <a class="row compact" href="${href}">
+        <div class="row-head">
+          <span class="row-name">${esc(name)}</span>
+          ${by ? `<span class="row-by">${esc(by)}</span>` : ""}
+          <span class="row-arrow" aria-hidden="true">&rarr;</span>
+        </div>
+        <p class="row-desc">${esc(desc)}</p>
       </a>`;
   }
 
   /* ── nav ─────────────────────────────────────────────────────────── */
   function buildNav() {
     const route = currentRoute();
-    let html = `
-      <div class="nav-section">Browse</div>
-      <a class="nav-link${route.name === "home" ? " active" : ""}" href="#/">
-        <span class="ico">⌂</span> Home
-      </a>`;
+    let html = `<div class="nav-section">browse</div>
+      <a class="nav-link${route.name === "home" ? " active" : ""}" href="#/">home</a>`;
 
     DB.categories.forEach((c) => {
       const active = route.name === "category" && route.id === c.id;
-      html += `
-        <a class="nav-link${active ? " active" : ""}" href="#/${c.id}">
-          <span class="ico">${c.icon}</span> ${esc(c.label)}
-          <span class="count">${DB[c.id].length}</span>
-        </a>`;
+      html += `<a class="nav-link${active ? " active" : ""}" href="#/${c.id}">${esc(c.label)}<span class="count">${DB[c.id].length}</span></a>`;
     });
 
     const guidesActive = route.name === "guides" || route.name === "guide";
-    html += `
-      <div class="nav-section">Learn</div>
-      <a class="nav-link${guidesActive ? " active" : ""}" href="#/guides">
-        <span class="ico">📖</span> Guides
-        <span class="count">${DB.guides.length}</span>
-      </a>`;
+    html += `<div class="nav-section">learn</div>
+      <a class="nav-link${guidesActive ? " active" : ""}" href="#/guides">guides<span class="count">${DB.guides.length}</span></a>`;
 
     els.nav.innerHTML = html;
   }
@@ -101,41 +100,32 @@
 
   /* ── views ───────────────────────────────────────────────────────── */
   function renderHome() {
-    const cats = DB.categories.map((c) => `
-      <a class="cat-card" href="#/${c.id}">
-        <span class="cat-ico">${c.icon}</span>
-        <h3>${esc(c.label)} <span class="count">${DB[c.id].length}</span></h3>
-        <p>${esc(c.blurb)}</p>
-      </a>`).join("");
+    const cats = DB.categories.map((c) =>
+      navRowHTML(`#/${c.id}`, c.label, `${DB[c.id].length} entries`, c.blurb)).join("");
 
-    const guides = DB.guides.map((g) => `
-      <a class="guide-card" href="#/guide/${g.slug}">
-        <span class="g-ico">${g.icon}</span>
-        <h3>${esc(g.title)}</h3>
-        <p>${esc(g.summary)}</p>
-        <span class="g-read">Read →</span>
-      </a>`).join("");
+    const guides = DB.guides.map((g) =>
+      navRowHTML(`#/guide/${g.slug}`, g.title, "", g.summary)).join("");
 
     return `
       <div class="content-inner">
-        <section class="hero">
-          <div class="eyebrow">A field guide for technical founders</div>
-          <h1>Bootstrap your idea into a <span class="grad">real business</span>.</h1>
-          <p>A curated directory and wiki of everything a technically-minded founder needs to go from idea to paying customers — without raising a round. The podcasts, books, tools and playbooks that actually move the needle.</p>
-          <div class="hero-stats">
-            <div class="hero-stat"><div class="n">${totalResources()}</div><div class="l">Resources</div></div>
-            <div class="hero-stat"><div class="n">${DB.categories.length}</div><div class="l">Categories</div></div>
-            <div class="hero-stat"><div class="n">${DB.guides.length}</div><div class="l">Playbooks</div></div>
-          </div>
+        <section class="lede">
+          <p class="tag-line">// a field guide for technical founders</p>
+          <h1>Bootstrap your idea into a <span class="accent">real business</span>.</h1>
+          <p>A minimal directory and wiki of what a technically-minded founder needs to go from idea to paying customers &mdash; without raising a round. The podcasts, books, tools and playbooks that actually move the needle.</p>
+          <p class="meta"><b>${totalResources()}</b> resources &middot; <b>${DB.categories.length}</b> categories &middot; <b>${DB.guides.length}</b> playbooks &middot; no tracking</p>
         </section>
 
-        <h2 class="home-h2">Browse the directory</h2>
-        <p class="home-h2-sub">Hand-picked resources, grouped by what you need.</p>
-        <div class="cat-grid">${cats}</div>
+        <section class="block">
+          <h2 class="block-title">directory</h2>
+          <p class="block-sub">Hand-picked resources, grouped by what you need.</p>
+          <div class="list">${cats}</div>
+        </section>
 
-        <h2 class="home-h2">📖 Practical playbooks</h2>
-        <p class="home-h2-sub">The wiki bit — opinionated, tactical guides on validation, traction, pricing and launching.</p>
-        <div class="guide-list">${guides}</div>
+        <section class="block">
+          <h2 class="block-title">playbooks</h2>
+          <p class="block-sub">The wiki bit &mdash; opinionated, tactical guides on validation, traction, pricing and launching.</p>
+          <div class="list">${guides}</div>
+        </section>
 
         ${footerHTML()}
       </div>`;
@@ -145,43 +135,34 @@
     const cat = DB.categories.find((c) => c.id === id);
     const items = DB[id] || [];
 
-    // tag bar
     const tagCounts = {};
     items.forEach((it) => (it.tags || []).forEach((t) => (tagCounts[t] = (tagCounts[t] || 0) + 1)));
     const tags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
-    const tagbar = tags.length ? `
-      <div class="tagbar">
-        <span class="tag-chip${!activeTag ? " active" : ""}" data-tag="">All</span>
-        ${tags.map((t) => `<span class="tag-chip${activeTag === t ? " active" : ""}" data-tag="${esc(t)}">${esc(t)}</span>`).join("")}
+    const filters = tags.length ? `
+      <div class="filters">
+        <span class="filter${!activeTag ? " active" : ""}" data-tag="">all</span>
+        ${tags.map((t) => `<span class="filter${activeTag === t ? " active" : ""}" data-tag="${esc(t)}">${esc(t)}</span>`).join("")}
       </div>` : "";
 
     const shown = activeTag ? items.filter((it) => (it.tags || []).includes(activeTag)) : items;
-    const cards = shown.map((it) => cardHTML(it)).join("");
 
     return `
       <div class="content-inner">
-        <div class="section-head"><span class="ico">${cat.icon}</span><h2>${esc(cat.label)}</h2></div>
-        <p class="section-sub">${esc(cat.blurb)}</p>
-        ${tagbar}
-        <p class="results-meta">${shown.length} of ${items.length}${activeTag ? ` · filtered by “${esc(activeTag)}”` : ""}</p>
-        <div class="grid">${cards}</div>
+        <div class="page-head"><h2>${esc(cat.label)}</h2><p class="page-sub">${esc(cat.blurb)}</p></div>
+        ${filters}
+        <p class="results-meta">${shown.length} of ${items.length}${activeTag ? ` &middot; filtered by #${esc(activeTag)}` : ""}</p>
+        <div class="list">${shown.map((it) => rowHTML(it)).join("")}</div>
         ${footerHTML()}
       </div>`;
   }
 
   function renderGuides() {
-    const guides = DB.guides.map((g) => `
-      <a class="guide-card" href="#/guide/${g.slug}">
-        <span class="g-ico">${g.icon}</span>
-        <h3>${esc(g.title)}</h3>
-        <p>${esc(g.summary)}</p>
-        <span class="g-read">Read →</span>
-      </a>`).join("");
+    const guides = DB.guides.map((g) =>
+      navRowHTML(`#/guide/${g.slug}`, g.title, "", g.summary)).join("");
     return `
       <div class="content-inner">
-        <div class="section-head"><span class="ico">📖</span><h2>Guides</h2></div>
-        <p class="section-sub">Opinionated, tactical playbooks. Less directory, more wiki.</p>
-        <div class="guide-list">${guides}</div>
+        <div class="page-head"><h2>guides</h2><p class="page-sub">Opinionated, tactical playbooks. Less directory, more wiki.</p></div>
+        <div class="list">${guides}</div>
         ${footerHTML()}
       </div>`;
   }
@@ -194,13 +175,14 @@
     return `
       <div class="content-inner">
         <article class="article">
-          <div class="crumb"><a href="#/guides">📖 Guides</a> <span>/</span> ${esc(g.title)}</div>
-          <h1>${g.icon} ${esc(g.title)}</h1>
-          <p class="lede">${esc(g.summary)}</p>
+          <div class="crumb"><a href="#/guides">guides</a> / ${esc(g.title)}</div>
+          <h1>${esc(g.title)}</h1>
+          <p class="lede-text">${esc(g.summary)}</p>
+          <hr class="rule" />
           <div class="article-body">${g.body}</div>
           <div class="article-foot">
-            <a class="btn-pill" href="#/guides">← All guides</a>
-            <a class="btn-pill" href="#/guide/${next.slug}">Next: ${esc(next.title)} →</a>
+            <a href="#/guides">&larr; all guides</a>
+            <a href="#/guide/${next.slug}">next: ${esc(next.title)} &rarr;</a>
           </div>
         </article>
         ${footerHTML()}
@@ -214,44 +196,42 @@
 
     if (!results.length && !guideHits.length) {
       return `<div class="content-inner"><div class="empty">
-        <div class="big">🔭</div>
-        <p>No matches for “<strong>${esc(q)}</strong>”.</p>
-        <p>Try a broader term — or <a href="#/">browse the directory</a>.</p>
+        <div class="big">no matches</div>
+        <p>Nothing for &ldquo;${esc(q)}&rdquo;. Try a broader term, or <a href="#/">browse the directory</a>.</p>
       </div></div>`;
     }
 
     const guideBlock = guideHits.length ? `
-      <h2 class="home-h2">📖 Guides</h2>
-      <div class="guide-list" style="margin-bottom:34px">
-        ${guideHits.map((g) => `
-          <a class="guide-card" href="#/guide/${g.slug}">
-            <span class="g-ico">${g.icon}</span><h3>${esc(g.title)}</h3>
-            <p>${esc(g.summary)}</p><span class="g-read">Read →</span>
-          </a>`).join("")}
-      </div>` : "";
+      <section class="block">
+        <h2 class="block-title">guides</h2>
+        <div class="list">${guideHits.map((g) => navRowHTML(`#/guide/${g.slug}`, g.title, "", g.summary)).join("")}</div>
+      </section>` : "";
 
-    const cards = results.map((it) => cardHTML(it, it._cat.label)).join("");
+    const resBlock = results.length ? `
+      <section class="block">
+        <h2 class="block-title">resources</h2>
+        <div class="list">${results.map((it) => rowHTML(it, it._cat.label)).join("")}</div>
+      </section>` : "";
 
     return `
       <div class="content-inner">
-        <div class="section-head"><span class="ico">⌕</span><h2>Search</h2></div>
-        <p class="results-meta">${results.length + guideHits.length} result${results.length + guideHits.length === 1 ? "" : "s"} for “${esc(q)}”</p>
-        ${guideBlock}
-        ${cards ? `<h2 class="home-h2">Resources</h2><div class="grid">${cards}</div>` : ""}
+        <div class="page-head"><h2>search</h2>
+        <p class="page-sub">${results.length + guideHits.length} result${results.length + guideHits.length === 1 ? "" : "s"} for &ldquo;${esc(q)}&rdquo;</p></div>
+        ${guideBlock}${resBlock}
       </div>`;
   }
 
   function renderNotFound() {
     return `<div class="content-inner"><div class="empty">
-      <div class="big">🤷</div><p>Nothing here.</p><p><a href="#/">Back home</a></p>
+      <div class="big">404</div><p>Nothing here. <a href="#/">Back home</a>.</p>
     </div></div>`;
   }
 
   function footerHTML() {
     return `
       <footer class="site-foot">
-        <span>🥾 bootstrapfounders — an open field guide. Built static, no tracking.</span>
-        <span><a href="https://github.com/" target="_blank" rel="noopener">Contribute on GitHub →</a></span>
+        <span>bootstrapfounders &mdash; an open field guide. built static, no tracking.</span>
+        <span><a href="https://github.com/alastairrushworth/bootstrapfounders" target="_blank" rel="noopener">contribute &rarr;</a></span>
       </footer>`;
   }
 
@@ -277,12 +257,8 @@
   }
 
   function bindViewEvents() {
-    els.content.querySelectorAll(".tag-chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        const t = chip.dataset.tag;
-        activeTag = t || null;
-        render();
-      });
+    els.content.querySelectorAll(".filter").forEach((f) => {
+      f.addEventListener("click", () => { activeTag = f.dataset.tag || null; render(); });
     });
   }
 
@@ -306,10 +282,9 @@
     els.nav.addEventListener("click", (e) => { if (e.target.closest(".nav-link")) close(); });
   }
 
-  /* ── search wiring ───────────────────────────────────────────────── */
+  /* ── search ──────────────────────────────────────────────────────── */
   function initSearch() {
     els.search.addEventListener("input", () => { searchQuery = els.search.value; render(); });
-    // "/" focuses search, Esc clears
     document.addEventListener("keydown", (e) => {
       if (e.key === "/" && document.activeElement !== els.search) { e.preventDefault(); els.search.focus(); }
       if (e.key === "Escape" && document.activeElement === els.search) { els.search.value = ""; searchQuery = ""; els.search.blur(); render(); }

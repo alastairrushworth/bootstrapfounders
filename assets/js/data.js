@@ -8,13 +8,13 @@ window.DB = {
 
   /* ---- Top-level categories (order = nav order) ------------------------ */
   categories: [
-    { id: "podcasts",    label: "Podcasts",          icon: "🎙️", blurb: "Listen on the commute. Founders, operators and investors, unscripted." },
-    { id: "youtube",     label: "YouTube",           icon: "📺", blurb: "Watch teardowns, build-alongs and interviews." },
-    { id: "books",       label: "Books",             icon: "📚", blurb: "The canon. Read these before you write a line of code." },
-    { id: "reading",     label: "Newsletters & Blogs", icon: "✉️", blurb: "Subscribe once, learn forever. The essays and lists worth your inbox." },
-    { id: "communities", label: "Communities",       icon: "💬", blurb: "Where bootstrappers hang out, ship in public and swap notes." },
-    { id: "tools",       label: "Tools",             icon: "🛠️", blurb: "The lean stack: build, charge, measure, market." },
-    { id: "launch",      label: "Launch Platforms",  icon: "🚀", blurb: "Where to put your thing in front of people on day one." },
+    { id: "podcasts",    label: "Podcasts", blurb: "Listen on the commute. Founders, operators and investors, unscripted." },
+    { id: "youtube",     label: "YouTube", blurb: "Watch teardowns, build-alongs and interviews." },
+    { id: "books",       label: "Books", blurb: "The canon. Read these before you write a line of code." },
+    { id: "reading",     label: "Newsletters & Blogs", blurb: "Subscribe once, learn forever. The essays and lists worth your inbox." },
+    { id: "communities", label: "Communities", blurb: "Where bootstrappers hang out, ship in public and swap notes." },
+    { id: "tools",       label: "Tools", blurb: "The lean stack: build, charge, measure, market." },
+    { id: "launch",      label: "Launch Platforms", blurb: "Where to put your thing in front of people on day one." },
   ],
 
   /* ---- PODCASTS -------------------------------------------------------- */
@@ -145,7 +145,7 @@ window.DB = {
     {
       slug: "validate-idea",
       title: "Validate before you build",
-      icon: "🔍",
+
       summary: "How to find out if anyone wants this — before you spend three months building it.",
       tags: ["validation", "customers"],
       body: `
@@ -174,7 +174,7 @@ window.DB = {
     {
       slug: "first-customers",
       title: "Getting your first 10 customers",
-      icon: "🎯",
+
       summary: "The unscalable, manual hustle that gets you from zero to your first paying users.",
       tags: ["customers", "traction"],
       body: `
@@ -202,7 +202,7 @@ window.DB = {
     {
       slug: "traction-channels",
       title: "The Bullseye traction framework",
-      icon: "📈",
+
       summary: "There are ~19 ways to get customers. Most founders only seriously try one. Here's how to find yours.",
       tags: ["traction", "growth", "marketing"],
       body: `
@@ -228,7 +228,7 @@ window.DB = {
     {
       slug: "pricing",
       title: "Pricing without flinching",
-      icon: "💰",
+
       summary: "You're almost certainly charging too little. How to price for a sustainable bootstrapped business.",
       tags: ["pricing", "saas", "revenue"],
       body: `
@@ -255,7 +255,7 @@ window.DB = {
     {
       slug: "build-in-public",
       title: "Building in public",
-      icon: "📣",
+
       summary: "Turn your build journey into your first marketing channel and audience.",
       tags: ["audience", "marketing", "build-in-public"],
       body: `
@@ -270,7 +270,7 @@ window.DB = {
         </ul>
 
         <h3>What to actually post</h3>
-        <p>Specifics beat platitudes. "Just hit $1,200 MRR — here's the exact email that converted 40 trials" outperforms "grateful for the journey 🙏" every time.</p>
+        <p>Specifics beat platitudes. "Just hit $1,200 MRR — here's the exact email that converted 40 trials" outperforms "grateful for the journey" every time.</p>
         <ul>
           <li>Real numbers and milestones (MRR, users, churn).</li>
           <li>Decisions and the reasoning behind them.</li>
@@ -285,7 +285,7 @@ window.DB = {
     {
       slug: "product-hunt-launch",
       title: "Launching on Product Hunt",
-      icon: "🚀",
+
       summary: "A practical checklist for getting the most out of launch day.",
       tags: ["launch", "marketing"],
       body: `
@@ -314,7 +314,7 @@ window.DB = {
     {
       slug: "seo-for-founders",
       title: "SEO that compounds",
-      icon: "🔎",
+
       summary: "Why search is the bootstrapper's favourite channel, and how to start.",
       tags: ["seo", "marketing", "content"],
       body: `
@@ -344,7 +344,7 @@ window.DB = {
     {
       slug: "cold-outreach",
       title: "Cold outreach that isn't spam",
-      icon: "✉️",
+
       summary: "How to email strangers and actually get replies — useful for B2B and partnerships.",
       tags: ["sales", "customers", "b2b"],
       body: `
