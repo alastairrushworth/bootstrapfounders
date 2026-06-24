@@ -31,8 +31,16 @@
   // must match fetch_images.py slug(): lowercase, non-alnum runs -> "-", trimmed
   const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
-  // categories whose rows get a local thumbnail (assets/img/<id>/<slug>.jpg)
-  const THUMB_CATS = new Set(["podcasts", "youtube"]);
+  // categories whose rows get a local thumbnail at assets/img/<id>/<slug>.<ext>
+  //  cover = full-bleed art/avatar (jpg) · fav = site icon on a tile (png)
+  const THUMB = {
+    podcasts:    { kind: "cover", ext: "jpg" },
+    youtube:     { kind: "cover", ext: "jpg" },
+    tools:       { kind: "fav",   ext: "png" },
+    reading:     { kind: "fav",   ext: "png" },
+    communities: { kind: "fav",   ext: "png" },
+    launch:      { kind: "fav",   ext: "png" },
+  };
 
   const totalResources = () =>
     DB.categories.reduce((n, c) => n + (DB[c.id]?.length || 0), 0);
@@ -51,13 +59,13 @@
     if (catLabel) tags.push(`<span class="tag">${esc(catLabel.toLowerCase())}</span>`);
     (item.tags || []).forEach((t) =>
       tags.push(`<span class="tag${FLAG_TAGS.has(t) ? " flag" : ""}">${esc(t)}</span>`));
-    const hasThumb = THUMB_CATS.has(catId);
+    const t = THUMB[catId];
     // onerror removes the <img> so a missing file degrades to a plain row
-    const thumb = hasThumb
-      ? `<img class="row-thumb" src="assets/img/${catId}/${slugify(item.name)}.jpg" alt="" loading="lazy" onerror="this.remove()" />`
+    const thumb = t
+      ? `<img class="row-thumb${t.kind === "fav" ? " fav" : ""}" src="assets/img/${catId}/${slugify(item.name)}.${t.ext}" alt="" loading="lazy" onerror="this.remove()" />`
       : "";
     return `
-      <a class="row${hasThumb ? " has-thumb" : ""}" href="${esc(item.url)}" target="_blank" rel="noopener">
+      <a class="row${t ? " has-thumb" : ""}" href="${esc(item.url)}" target="_blank" rel="noopener">
         ${thumb}
         <div class="row-main">
           <div class="row-head">
