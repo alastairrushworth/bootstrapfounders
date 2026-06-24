@@ -28,6 +28,12 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+  // must match fetch_images.py slug(): lowercase, non-alnum runs -> "-", trimmed
+  const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+  // categories whose rows get a local thumbnail (assets/img/<id>/<slug>.jpg)
+  const THUMB_CATS = new Set(["podcasts", "youtube"]);
+
   const totalResources = () =>
     DB.categories.reduce((n, c) => n + (DB[c.id]?.length || 0), 0);
 
@@ -40,20 +46,28 @@
   }
 
   /* ── templates ───────────────────────────────────────────────────── */
-  function rowHTML(item, catLabel) {
+  function rowHTML(item, catLabel, catId) {
     const tags = [];
     if (catLabel) tags.push(`<span class="tag">${esc(catLabel.toLowerCase())}</span>`);
     (item.tags || []).forEach((t) =>
       tags.push(`<span class="tag${FLAG_TAGS.has(t) ? " flag" : ""}">${esc(t)}</span>`));
+    const hasThumb = THUMB_CATS.has(catId);
+    // onerror removes the <img> so a missing file degrades to a plain row
+    const thumb = hasThumb
+      ? `<img class="row-thumb" src="assets/img/${catId}/${slugify(item.name)}.jpg" alt="" loading="lazy" onerror="this.remove()" />`
+      : "";
     return `
-      <a class="row" href="${esc(item.url)}" target="_blank" rel="noopener">
-        <div class="row-head">
-          <span class="row-name">${esc(item.name)}</span>
-          ${item.by ? `<span class="row-by">${esc(item.by)}</span>` : ""}
-          <span class="row-arrow" aria-hidden="true">&rarr;</span>
+      <a class="row${hasThumb ? " has-thumb" : ""}" href="${esc(item.url)}" target="_blank" rel="noopener">
+        ${thumb}
+        <div class="row-main">
+          <div class="row-head">
+            <span class="row-name">${esc(item.name)}</span>
+            ${item.by ? `<span class="row-by">${esc(item.by)}</span>` : ""}
+            <span class="row-arrow" aria-hidden="true">&rarr;</span>
+          </div>
+          <p class="row-desc">${esc(item.desc)}</p>
+          <div class="row-tags">${tags.join("")}</div>
         </div>
-        <p class="row-desc">${esc(item.desc)}</p>
-        <div class="row-tags">${tags.join("")}</div>
       </a>`;
   }
 
@@ -151,7 +165,7 @@
         <div class="page-head"><h2>${esc(cat.label)}</h2><p class="page-sub">${esc(cat.blurb)}</p></div>
         ${filters}
         <p class="results-meta">${shown.length} of ${items.length}${activeTag ? ` &middot; filtered by #${esc(activeTag)}` : ""}</p>
-        <div class="list">${shown.map((it) => rowHTML(it)).join("")}</div>
+        <div class="list">${shown.map((it) => rowHTML(it, null, id)).join("")}</div>
         ${footerHTML()}
       </div>`;
   }
@@ -210,7 +224,7 @@
     const resBlock = results.length ? `
       <section class="block">
         <h2 class="block-title">resources</h2>
-        <div class="list">${results.map((it) => rowHTML(it, it._cat.label)).join("")}</div>
+        <div class="list">${results.map((it) => rowHTML(it, it._cat.label, it._cat.id)).join("")}</div>
       </section>` : "";
 
     return `
