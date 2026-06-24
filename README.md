@@ -67,33 +67,38 @@ Tags `must-read`, `must-listen`, `must-watch`, `must-do` and `free` get a highli
 
 ## Thumbnails
 
-Rows in the `podcasts` and `youtube` categories show a small local image at
-`assets/img/<category>/<slug>.jpg`, where `<slug>` is the resource's `name`
+Several categories show a small local image per row at
+`assets/img/<category>/<slug>.<ext>`, where `<slug>` is the resource's `name`
 lowercased with every run of non-alphanumeric characters turned into `-`
-(e.g. `"Lenny's Podcast"` → `lenny-s-podcast.jpg`). This must match the
-`slugify()` in `app.js`. A missing image degrades gracefully to a plain row.
+(e.g. `"Lenny's Podcast"` → `lenny-s-podcast`). This must match `slugify()` in
+`app.js`. A missing image degrades gracefully to a plain row.
+
+Two kinds, configured in the `THUMB` map in `app.js`:
+
+- **cover** (`.jpg`, full-bleed) — `podcasts`, `youtube`
+- **fav** (`.png`, site icon on a light tile) — `tools`, `reading`, `communities`, `launch`
 
 Images are bundled locally (no external requests, nothing to break). To
-(re)generate them, run — on macOS, needs `curl` + `sips`:
+(re)generate them — macOS, needs `curl` + `sips`:
 
 ```bash
-python3 scripts/fetch_images.py
+python3 scripts/fetch_images.py     # podcast cover art (iTunes) + YouTube avatars (og:image)
+python3 scripts/fetch_favicons.py   # site icons (apple-touch-icon, falling back to Google s2)
 ```
-
-It pulls podcast cover art from the free iTunes Search API and YouTube
-channel avatars from each channel page's `og:image`, then resizes to 160px.
 
 ## Structure
 
 ```
 index.html               # shell: top bar, sidebar, content mount
+CNAME                     # custom domain for GitHub Pages
 assets/
   css/styles.css         # all styling + theming
   js/data.js             # ← all content lives here
   js/app.js              # routing, search, filtering, rendering
-  img/podcasts|youtube/  # bundled row thumbnails
+  img/<category>/        # bundled row thumbnails
 scripts/
-  fetch_images.py        # regenerate thumbnails
+  fetch_images.py        # cover art + avatars
+  fetch_favicons.py      # site icons
 ```
 
 ## License

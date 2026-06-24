@@ -181,6 +181,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   object-fit: cover; border: 1px solid var(--line); border-radius: var(--radius);
   background: var(--bg-1);
 }
+/* site icons: contained on a light tile so any favicon stays visible */
+.row-thumb.fav { object-fit: contain; padding: 8px; background: #fff; }
 .row-main { flex: 1; min-width: 0; }
 .row-head { display: flex; align-items: baseline; gap: 10px; }
 .row-name { color: var(--text); font-weight: 700; font-size: .95rem; }
