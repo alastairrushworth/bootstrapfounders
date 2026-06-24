@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bootstrapfounders — the field guide for technical founders</title>
+  <meta name="description" content="A curated directory + wiki for technically-minded founders bootstrapping a startup: podcasts, YouTube, books, newsletters, communities, tools, launch platforms and practical traction guides." />
+  <meta name="color-scheme" content="dark light" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="bootstrapfounders" />
+  <meta property="og:description" content="The field guide for technical founders bootstrapping a startup. Curated resources + practical playbooks." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥾</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- ░░ Top bar ░░ -->
+  <header class="topbar">
+    <button class="icon-btn nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <a class="brand" href="#/">
+      <span class="brand-mark">🥾</span>
+      <span class="brand-text">bootstrap<span class="brand-accent">founders</span></span>
+    </a>
+
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="search" type="search" placeholder="Search everything…  (press /)" autocomplete="off" spellcheck="false" />
+      <kbd class="search-kbd">/</kbd>
+    </div>
+
+    <a class="icon-btn ghost" href="https://github.com/" target="_blank" rel="noopener" title="Contribute on GitHub" aria-label="GitHub">★</a>
+    <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">◐</button>
+  </header>
+
+  <div class="layout">
+    <!-- ░░ Sidebar ░░ -->
+    <aside class="sidebar" id="sidebar">
+      <nav id="nav"><!-- built by app.js --></nav>
+      <div class="sidebar-foot">
+        <p>A community field guide. Spotted something missing?</p>
+        <a class="btn-outline" href="https://github.com/" target="_blank" rel="noopener">+ Suggest a resource</a>
+      </div>
+    </aside>
+    <div class="scrim" id="scrim"></div>
+
+    <!-- ░░ Main ░░ -->
+    <main class="content" id="content"><!-- routed by app.js --></main>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
