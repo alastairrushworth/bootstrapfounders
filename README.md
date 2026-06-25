@@ -12,8 +12,9 @@ It curates the best **podcasts, YouTube channels, books, newsletters & blogs, co
 - **Category browsing** with per-category **tag filters**.
 - **Wiki-style guides** rendered from a single content file, with prev / next and related-guide links.
 - **Dark / light mode** that respects your OS preference on first visit and is remembered after.
-- **Accessible:** skip link, keyboard-focus styles, ARIA state on the controls, AA-contrast text.
+- **Accessible:** skip link, keyboard-focus styles, ARIA state on the controls, focus moves to the page heading on route change, AA-contrast text.
 - **Fully responsive** with a collapsible mobile sidebar.
+- **Community-editable:** a footer "suggest a resource" link opens a pre-filled GitHub issue.
 
 ## Run it locally
 
@@ -97,18 +98,23 @@ lowercased with every run of non-alphanumeric characters turned into `-`
 (e.g. `"Lenny's Podcast"` → `lenny-s-podcast`). This must match `slugify()` in
 `app.js`. A missing image degrades gracefully to a plain row.
 
-Two kinds, configured in the `THUMB` map in `app.js`:
+Three kinds, configured in the `THUMB` map in `render.js`:
 
-- **cover** (`.jpg`, full-bleed) — `podcasts`, `youtube`
+- **cover** (`.jpg`, full-bleed square) — `podcasts`, `youtube`
+- **book** (`.jpg`, portrait) — `books`
 - **fav** (`.png`, site icon on a light tile) — `reading`, `communities`, `launch`
 
 Images are bundled locally (no external requests, nothing to break). To
 (re)generate them — macOS, needs `curl` + `sips`:
 
 ```bash
-python3 scripts/fetch_images.py     # podcast cover art (iTunes) + YouTube avatars (og:image)
-python3 scripts/fetch_favicons.py   # site icons (apple-touch-icon, falling back to Google s2)
+python3 scripts/fetch_images.py        # podcast cover art (iTunes) + YouTube avatars (og:image)
+python3 scripts/fetch_book_covers.py   # book covers (Open Library)
+python3 scripts/fetch_favicons.py      # site icons (apple-touch-icon, falling back to Google s2)
 ```
+
+Open Library can mismatch the edition for indie/self-published titles — review
+new book covers visually before committing.
 
 ## Structure
 
@@ -127,7 +133,8 @@ assets/
   og.png                 # 1200×630 social card
 scripts/
   prerender.js           # builds ./dist (static pages + sitemap.xml) using render.js
-  fetch_images.py        # cover art + avatars
+  fetch_images.py        # podcast cover art + YouTube avatars
+  fetch_book_covers.py   # book covers (Open Library)
   fetch_favicons.py      # site icons
 dist/                    # prerender output (gitignored) — this is what gets deployed
 ```

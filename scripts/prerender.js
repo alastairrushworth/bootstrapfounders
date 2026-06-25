@@ -17,6 +17,10 @@ const DIST = path.join(ROOT, "dist");
 
 /* Load the content DB + shared render layer in a browser-ish global. */
 global.window = global;
+// build date (UTC, YYYY-MM-DD) — render.js bakes it into JSON-LD dateModified
+// and we reuse it for sitemap <lastmod>. Set BEFORE render.js loads.
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+global.BF_BUILD_DATE = BUILD_DATE;
 require(path.join(ROOT, "assets/js/data.js"));   // sets window.DB
 require(path.join(ROOT, "assets/js/render.js"));  // sets window.BF
 const { BF } = global;
@@ -79,13 +83,26 @@ function writeFile(rel, body) {
 /* ── sitemap ────────────────────────────────────────────────────────── */
 function buildSitemap(routes) {
   const urls = routes
-    .map((r) => `  <url><loc>${BF.BASE_URL}${BF.headFor(r).path}</loc></url>`)
+    .map((r) => `  <url><loc>${BF.BASE_URL}${BF.headFor(r).path}</loc><lastmod>${BUILD_DATE}</lastmod></url>`)
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}
 </urlset>
 `;
+}
+
+/* ── conservative CSS minify (dist only) ────────────────────────────────
+   Strips comments and collapses whitespace. JS is left as-is: data.js holds
+   guide bodies in multi-line template literals, so collapsing its whitespace
+   would alter the rendered HTML. */
+function minifyCSS(css) {
+  return css
+    .replace(/\/\*[\s\S]*?\*\//g, "")          // block comments
+    .replace(/\s+/g, " ")                       // collapse runs of whitespace
+    .replace(/\s*([{}:;,>])\s*/g, "$1")        // trim around punctuation
+    .replace(/;}/g, "}")                         // drop last semicolon in a block
+    .trim();
 }
 
 /* ── build ──────────────────────────────────────────────────────────── */
@@ -102,6 +119,9 @@ function main() {
   // NB: no CNAME — this is a project page served under the apex at /bootstrapfounders/,
   // so it must not claim a custom domain of its own.
   fs.cpSync(path.join(ROOT, "assets"), path.join(DIST, "assets"), { recursive: true });
+  // minify the (already-copied) stylesheet in place
+  const cssPath = path.join(DIST, "assets/css/styles.css");
+  fs.writeFileSync(cssPath, minifyCSS(fs.readFileSync(cssPath, "utf8")));
   [".nojekyll", "robots.txt", "site.webmanifest"].forEach((f) => {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, f));

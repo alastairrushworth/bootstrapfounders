@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch site icons for website-based categories (tools, reading, communities,
+"""Fetch site icons for website-based categories (reading, communities,
 launch) and bundle them locally as assets/img/<cat>/<slug>.png.
 
 Quality cascade per site:
@@ -12,7 +12,7 @@ Slug logic MUST match app.js slugify(). Requires macOS `sips` + `curl`.
 import json, os, re, subprocess, tempfile, time, urllib.parse
 
 ROOT = "/Users/alastairrushworth/Documents/GitHub/bootstrapfounders"
-CATS = ["tools", "reading", "communities", "launch"]
+CATS = ["reading", "communities", "launch"]
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 

@@ -48,6 +48,7 @@
     <div class="search-wrap" role="search">
       <span class="search-prompt" aria-hidden="true">/</span>
       <input id="search" type="search" placeholder="search&hellip;" aria-label="Search resources and guides" autocomplete="off" spellcheck="false" />
+      <button id="searchClear" class="search-clear" type="button" aria-label="Clear search" hidden>&times;</button>
       <kbd class="search-kbd" aria-hidden="true">/</kbd>
     </div>
 
@@ -66,8 +67,8 @@
     <main class="content" id="content" tabindex="-1"><!-- routed by app.js --></main>
   </div>
 
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/render.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script defer src="assets/js/data.js"></script>
+  <script defer src="assets/js/render.js"></script>
+  <script defer src="assets/js/app.js"></script>
 </body>
 </html>
