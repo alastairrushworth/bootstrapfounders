@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bootstrap.alastairrushworth.com/sitemap.xml
+Sitemap: https://alastairrushworth.com/bootstrapfounders/sitemap.xml

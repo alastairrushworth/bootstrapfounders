@@ -8,7 +8,9 @@
   "use strict";
 
   const DB = root.DB;
-  const BASE_URL = "https://bootstrap.alastairrushworth.com";
+  const ORIGIN = "https://alastairrushworth.com";
+  const BASE = "/bootstrapfounders";       // project-page path mounted under the apex
+  const BASE_URL = ORIGIN + BASE;           // canonical site root (origin + base)
 
   /* ── helpers ─────────────────────────────────────────────────────── */
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
@@ -46,7 +48,7 @@
     const t = THUMB[catId];
     // onerror removes the <img> so a missing file degrades to a plain row
     const thumb = t
-      ? `<img class="row-thumb${t.kind === "fav" ? " fav" : ""}" src="/assets/img/${catId}/${slugify(item.name)}.${t.ext}" alt="" loading="lazy" onerror="this.remove()" />`
+      ? `<img class="row-thumb${t.kind === "fav" ? " fav" : ""}" src="${BASE}/assets/img/${catId}/${slugify(item.name)}.${t.ext}" alt="" loading="lazy" onerror="this.remove()" />`
       : "";
     return `
       <a class="row${t ? " has-thumb" : ""}" href="${esc(item.url)}" target="_blank" rel="noopener">
@@ -87,10 +89,10 @@
   /* ── views ───────────────────────────────────────────────────────── */
   function renderHome() {
     const cats = DB.categories.map((c) =>
-      navRowHTML(`/${c.id}/`, c.label, `${DB[c.id].length} entries`, c.blurb)).join("");
+      navRowHTML(`${BASE}/${c.id}/`, c.label, `${DB[c.id].length} entries`, c.blurb)).join("");
 
     const guides = DB.guides.map((g) =>
-      navRowHTML(`/guide/${g.slug}/`, g.title, "", g.summary)).join("");
+      navRowHTML(`${BASE}/guide/${g.slug}/`, g.title, "", g.summary)).join("");
 
     return `
       <div class="content-inner">
@@ -145,7 +147,7 @@
 
   function renderGuides() {
     const guides = DB.guides.map((g) =>
-      navRowHTML(`/guide/${g.slug}/`, g.title, "", g.summary)).join("");
+      navRowHTML(`${BASE}/guide/${g.slug}/`, g.title, "", g.summary)).join("");
     return `
       <div class="content-inner">
         <div class="page-head"><h2>guides</h2><p class="page-sub">Opinionated, tactical playbooks. Less directory, more wiki.</p></div>
@@ -177,20 +179,20 @@
     const relatedBlock = related.length ? `
       <section class="related">
         <h2 class="block-title">related playbooks</h2>
-        <div class="list">${related.map((r) => navRowHTML(`/guide/${r.slug}/`, r.title, "", r.summary)).join("")}</div>
+        <div class="list">${related.map((r) => navRowHTML(`${BASE}/guide/${r.slug}/`, r.title, "", r.summary)).join("")}</div>
       </section>` : "";
 
     return `
       <div class="content-inner">
         <article class="article">
-          <div class="crumb"><a href="/guides/">guides</a> / ${esc(g.title)}</div>
+          <div class="crumb"><a href="${BASE}/guides/">guides</a> / ${esc(g.title)}</div>
           <h1>${esc(g.title)}</h1>
           <p class="lede-text">${esc(g.summary)}</p>
           <hr class="rule" />
           <div class="article-body">${g.body}</div>
           <nav class="article-foot" aria-label="guide navigation">
-            ${prev.slug !== g.slug ? `<a class="prev" href="/guide/${prev.slug}/">&larr; ${esc(prev.title)}</a>` : `<a href="/guides/">&larr; all guides</a>`}
-            ${next.slug !== g.slug ? `<a class="next" href="/guide/${next.slug}/">${esc(next.title)} &rarr;</a>` : ""}
+            ${prev.slug !== g.slug ? `<a class="prev" href="${BASE}/guide/${prev.slug}/">&larr; ${esc(prev.title)}</a>` : `<a href="${BASE}/guides/">&larr; all guides</a>`}
+            ${next.slug !== g.slug ? `<a class="next" href="${BASE}/guide/${next.slug}/">${esc(next.title)} &rarr;</a>` : ""}
           </nav>
         </article>
         ${relatedBlock}
@@ -200,7 +202,7 @@
 
   function renderNotFound() {
     return `<div class="content-inner"><div class="empty">
-      <div class="big">404</div><p>Nothing here. <a href="/">Back home</a>.</p>
+      <div class="big">404</div><p>Nothing here. <a href="${BASE}/">Back home</a>.</p>
     </div></div>`;
   }
 
@@ -298,7 +300,7 @@
   }
 
   root.BF = {
-    BASE_URL, esc, slugify, stripTags,
+    BASE, BASE_URL, esc, slugify, stripTags,
     rowHTML, navRowHTML, footerHTML,
     pageContent, renderNotFound, headFor, allRoutes,
   };

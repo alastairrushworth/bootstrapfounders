@@ -63,8 +63,9 @@ function buildPage(route) {
     () => `<meta name="description" content="${BF.esc(head.description)}" />`);
   // canonical / og / json-ld
   html = html.replace("<!--PRERENDER:HEAD-->", () => headLines.join("\n  "));
-  // shell uses relative asset paths so it opens locally; nested routes need absolute
-  html = html.replace(/\b(href|src)="assets\//g, '$1="/assets/');
+  // shell uses relative asset paths so it opens locally; the deployed site is
+  // mounted under BASE, so rewrite them to absolute /<base>/assets/...
+  html = html.replace(/\b(href|src)="assets\//g, `$1="${BF.BASE}/assets/`);
 
   return html;
 }
@@ -97,9 +98,11 @@ function main() {
   writeFile(outPath({ name: "notfound" }), buildPage({ name: "notfound" }));
   writeFile("sitemap.xml", buildSitemap(routes));
 
-  // copy static files needed at the site root
+  // copy static files needed at the site root.
+  // NB: no CNAME — this is a project page served under the apex at /bootstrapfounders/,
+  // so it must not claim a custom domain of its own.
   fs.cpSync(path.join(ROOT, "assets"), path.join(DIST, "assets"), { recursive: true });
-  ["CNAME", ".nojekyll", "robots.txt", "site.webmanifest"].forEach((f) => {
+  [".nojekyll", "robots.txt", "site.webmanifest"].forEach((f) => {
     const src = path.join(ROOT, f);
     if (fs.existsSync(src)) fs.copyFileSync(src, path.join(DIST, f));
   });

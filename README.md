@@ -7,7 +7,7 @@ It curates the best **podcasts, YouTube channels, books, newsletters & blogs, co
 ## Features
 
 - **Zero runtime dependencies.** Pure HTML / CSS / vanilla JS. The only build step is a dependency-free Node prerender.
-- **Real, crawlable URLs.** History-API routing (`/podcasts/`, `/guide/pricing/`) — every page is prerendered to static HTML with its own `<title>`, meta description, canonical, Open Graph tags and JSON-LD, plus a generated `sitemap.xml`.
+- **Real, crawlable URLs.** History-API routing under a base path — every page is prerendered to static HTML with its own `<title>`, meta description, canonical, Open Graph tags and JSON-LD, plus a generated `sitemap.xml`.
 - **Live search** across every resource and guide (press `/` to focus).
 - **Category browsing** with per-category **tag filters**.
 - **Wiki-style guides** rendered from a single content file, with prev / next and related-playbook links.
@@ -23,20 +23,36 @@ The home page works straight from the file:
 open index.html
 ```
 
-For the full multi-page experience (deep links, real URLs), build and serve the prerendered site:
+The site is mounted under a **base path** (`/bootstrapfounders`, set as `BASE` in
+`assets/js/render.js`) because it's served as a GitHub Pages *project page* at
+**`alastairrushworth.com/bootstrapfounders`**. For the full multi-page
+experience locally, build it and serve it from that path:
 
 ```bash
-node scripts/prerender.js          # builds ./dist
-cd dist && python3 -m http.server 8000   # visit http://localhost:8000
+node scripts/prerender.js                       # builds ./dist
+mkdir -p /tmp/site/bootstrapfounders && cp -R dist/. /tmp/site/bootstrapfounders/
+python3 -m http.server 8000 --directory /tmp/site
+# visit http://localhost:8000/bootstrapfounders/
 ```
 
-> History-API routing means deep links (e.g. `/guide/pricing/`) need a server that serves the matching file — `open index.html` only renders the home route.
+> History-API routing means deep links (e.g. `/bootstrapfounders/guide/pricing/`)
+> need a server that serves the matching file — `open index.html` only renders
+> the home route.
 
 ## Deploy
 
-A GitHub Actions workflow (`.github/workflows/deploy.yml`) runs the prerender and publishes **`dist/`** to **GitHub Pages** on every push to `main`. Just enable Pages → *GitHub Actions* as the source.
+A GitHub Actions workflow (`.github/workflows/deploy.yml`) runs the prerender and
+publishes **`dist/`** to **GitHub Pages** on every push to `main`. The repo has
+no `CNAME`, so because the account's user site (`alastairrushworth.github.io`)
+owns the apex domain, this project page is served at
+`alastairrushworth.com/bootstrapfounders/`. Enable Pages → *GitHub Actions* as
+the source.
 
-To deploy elsewhere (**Netlify**, **Vercel**, **Cloudflare Pages**, S3, …), run `node scripts/prerender.js` and upload the resulting `dist/` folder. A second workflow (`links.yml`) sweeps every external URL weekly and opens an issue if any rot.
+To host at a different base path, change `BASE` in `render.js` (and the absolute
+references in `index.html` / `site.webmanifest`). To deploy elsewhere
+(**Netlify**, **Vercel**, S3, …) run `node scripts/prerender.js` and upload
+`dist/`. A second workflow (`links.yml`) sweeps every external URL weekly and
+opens an issue if any rot.
 
 ## Adding or editing content
 
