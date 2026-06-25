@@ -2,13 +2,15 @@
   "name": "bootstrapfounders",
   "short_name": "bootstrapfounders",
   "description": "A field guide for technical founders bootstrapping a startup.",
-  "start_url": "/",
+  "id": "/bootstrapfounders/",
+  "start_url": "/bootstrapfounders/",
+  "scope": "/bootstrapfounders/",
   "display": "standalone",
   "background_color": "#101010",
   "theme_color": "#101010",
   "icons": [
-    { "src": "/assets/icons/icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/assets/icons/icon-512.png", "type": "image/png", "sizes": "512x512" },
-    { "src": "/assets/icons/icon-maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+    { "src": "/bootstrapfounders/assets/icons/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/bootstrapfounders/assets/icons/icon-512.png", "type": "image/png", "sizes": "512x512" },
+    { "src": "/bootstrapfounders/assets/icons/icon-maskable-512.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
   ]
 }

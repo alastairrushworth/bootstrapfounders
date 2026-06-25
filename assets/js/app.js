@@ -25,6 +25,7 @@
   let searchQuery = "";
 
   const esc = BF.esc;
+  const BASE = BF.BASE;   // path prefix the site is mounted under (e.g. /bootstrapfounders)
 
   function matches(item, q) {
     const hay = (item.name + " " + (item.by || "") + " " + item.desc + " " + (item.tags || []).join(" ")).toLowerCase();
@@ -40,9 +41,11 @@
   const allItemsFlat = () =>
     DB.categories.flatMap((c) => (DB[c.id] || []).map((it) => ({ ...it, _cat: c })));
 
-  /* ── routing (History API, real paths) ───────────────────────────── */
+  /* ── routing (History API, real paths under BASE) ────────────────── */
   function currentRoute() {
-    const parts = location.pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
+    let p = location.pathname;
+    if (p.startsWith(BASE)) p = p.slice(BASE.length);   // strip the mount prefix
+    const parts = p.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
     if (parts.length === 0) return { name: "home" };
     if (parts[0] === "guides") return { name: "guides" };
     if (parts[0] === "guide")  return parts[1] ? { name: "guide", slug: parts[1] } : { name: "guides" };
@@ -61,16 +64,16 @@
   function buildNav() {
     const route = currentRoute();
     let html = `<div class="nav-section">browse</div>
-      <a class="nav-link${route.name === "home" ? " active" : ""}" href="/">home</a>`;
+      <a class="nav-link${route.name === "home" ? " active" : ""}" href="${BASE}/">home</a>`;
 
     DB.categories.forEach((c) => {
       const active = route.name === "category" && route.id === c.id;
-      html += `<a class="nav-link${active ? " active" : ""}" href="/${c.id}/">${esc(c.label)}<span class="count">${DB[c.id].length}</span></a>`;
+      html += `<a class="nav-link${active ? " active" : ""}" href="${BASE}/${c.id}/">${esc(c.label)}<span class="count">${DB[c.id].length}</span></a>`;
     });
 
     const guidesActive = route.name === "guides" || route.name === "guide";
     html += `<div class="nav-section">learn</div>
-      <a class="nav-link${guidesActive ? " active" : ""}" href="/guides/">guides<span class="count">${DB.guides.length}</span></a>`;
+      <a class="nav-link${guidesActive ? " active" : ""}" href="${BASE}/guides/">guides<span class="count">${DB.guides.length}</span></a>`;
 
     els.nav.innerHTML = html;
   }
@@ -83,14 +86,14 @@
     if (!results.length && !guideHits.length) {
       return `<div class="content-inner"><div class="empty">
         <div class="big">no matches</div>
-        <p>Nothing for &ldquo;${esc(q)}&rdquo;. Try a broader term, or <a href="/">browse the directory</a>.</p>
+        <p>Nothing for &ldquo;${esc(q)}&rdquo;. Try a broader term, or <a href="${BASE}/">browse the directory</a>.</p>
       </div></div>`;
     }
 
     const guideBlock = guideHits.length ? `
       <section class="block">
         <h2 class="block-title">guides</h2>
-        <div class="list">${guideHits.map((g) => BF.navRowHTML(`/guide/${g.slug}/`, g.title, "", g.summary)).join("")}</div>
+        <div class="list">${guideHits.map((g) => BF.navRowHTML(`${BASE}/guide/${g.slug}/`, g.title, "", g.summary)).join("")}</div>
       </section>` : "";
 
     const resBlock = results.length ? `
@@ -165,8 +168,8 @@
       const a = e.target.closest("a");
       if (!a) return;
       const href = a.getAttribute("href");
-      // only intercept internal, same-tab, path links
-      if (!href || !href.startsWith("/") || href.startsWith("//") || a.target === "_blank") return;
+      // only intercept internal, same-tab links within our mount (BASE)
+      if (!href || !href.startsWith(BASE) || a.target === "_blank") return;
       e.preventDefault();
       navigate(href);
     });
