@@ -196,7 +196,7 @@ window.DB = {
         <h3>Charge from customer #1</h3>
         <p>Free users give polite, useless feedback. Paying users tell you what's actually broken and what they'd pay more for. Even a small price filters for people with the real problem.</p>
 
-        <p>See also: <a href="#/guide/traction-channels">the Bullseye traction framework</a> for what to do once these manual tactics start working.</p>
+        <p>See also: <a href="/guide/traction-channels/">the Bullseye traction framework</a> for what to do once these manual tactics start working.</p>
       `,
     },
     {

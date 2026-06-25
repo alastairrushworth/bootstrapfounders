@@ -1,0 +1,42 @@
+name: Check links
+
+# A directory's #1 decay problem is link rot. This sweeps every external URL
+# in the content (data.js) + the shell weekly and opens an issue if any break.
+on:
+  schedule:
+    - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check links with lychee
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # data.js holds every resource + guide-body URL; index.html the rest
+          args: >-
+            --no-progress
+            --max-concurrency 8
+            --accept 200,206,429
+            assets/js/data.js
+            index.html
+          output: ./lychee-report.md
+          # don't fail the run — surface findings as an issue for review
+          fail: false
+
+      - name: Open issue on broken links
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "🔗 Broken links detected"
+          content-filepath: ./lychee-report.md
+          labels: broken-links
