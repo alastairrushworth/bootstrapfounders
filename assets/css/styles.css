@@ -111,8 +111,16 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
 .nav-toggle { display: none; }
 
-.txt-btn { color: var(--text-dim); font-size: .82rem; padding: 6px; }
-.txt-btn:hover { color: var(--accent); }
+/* clear-search button — sits where the "/" hint is, shown only when typing */
+.search-clear {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center;
+  width: 22px; height: 22px;
+  background: transparent; border: 0; border-radius: 3px;
+  color: var(--text-faint); font: 500 1rem var(--mono); line-height: 1;
+  cursor: pointer; transition: color .12s;
+}
+.search-clear:hover { color: var(--accent); }
 
 /* ── Layout ──────────────────────────────────────────────────────────── */
 .layout { display: flex; }
@@ -197,6 +205,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 /* site icons: contained on a light tile so any favicon stays visible */
 .row-thumb.fav { object-fit: contain; padding: 8px; background: #fff; }
+/* book covers are portrait — give them a 5:7-ish frame instead of a square */
+.row-thumb.book { width: 40px; height: 56px; }
 .row-main { flex: 1; min-width: 0; }
 .row-head { display: flex; align-items: baseline; gap: 10px; }
 .row-name { color: var(--text); font-weight: 700; font-size: .95rem; }
@@ -264,7 +274,6 @@ footer.site-foot a { color: var(--text-dim); }
 }
 @media (max-width: 520px) {
   .content { padding: 24px 14px 60px; }
-  .txt-btn { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

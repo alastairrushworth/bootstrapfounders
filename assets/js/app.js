@@ -12,13 +12,15 @@
   const $  = (s, r = document) => r.querySelector(s);
 
   const els = {
-    content:   $("#content"),
-    nav:       $("#nav"),
-    search:    $("#search"),
-    theme:     $("#themeToggle"),
-    navToggle: $("#navToggle"),
-    scrim:     $("#scrim"),
-    body:      document.body,
+    content:    $("#content"),
+    nav:        $("#nav"),
+    search:     $("#search"),
+    searchClear:$("#searchClear"),
+    searchKbd:  $(".search-kbd"),
+    theme:      $("#themeToggle"),
+    navToggle:  $("#navToggle"),
+    scrim:      $("#scrim"),
+    body:       document.body,
   };
 
   let activeTag = null;     // tag filter within a category view
@@ -56,24 +58,25 @@
   function navigate(path) {
     if (path !== location.pathname) history.pushState({}, "", path);
     activeTag = null;
-    if (searchQuery) { searchQuery = ""; els.search.value = ""; }
-    render();
+    if (searchQuery) { searchQuery = ""; els.search.value = ""; syncClear(); }
+    render({ focus: true });
   }
 
   /* ── nav ─────────────────────────────────────────────────────────── */
   function buildNav() {
     const route = currentRoute();
+    const homeActive = route.name === "home";
     let html = `<div class="nav-section">browse</div>
-      <a class="nav-link${route.name === "home" ? " active" : ""}" href="${BASE}/">home</a>`;
+      <a class="nav-link${homeActive ? " active" : ""}"${homeActive ? ' aria-current="page"' : ""} href="${BASE}/">home</a>`;
 
     DB.categories.forEach((c) => {
       const active = route.name === "category" && route.id === c.id;
-      html += `<a class="nav-link${active ? " active" : ""}" href="${BASE}/${c.id}/">${esc(c.label)}<span class="count">${DB[c.id].length}</span></a>`;
+      html += `<a class="nav-link${active ? " active" : ""}"${active ? ' aria-current="page"' : ""} href="${BASE}/${c.id}/">${esc(c.label)}<span class="count">${DB[c.id].length}</span></a>`;
     });
 
     const guidesActive = route.name === "guides" || route.name === "guide";
     html += `<div class="nav-section">learn</div>
-      <a class="nav-link${guidesActive ? " active" : ""}" href="${BASE}/guides/">guides<span class="count">${DB.guides.length}</span></a>`;
+      <a class="nav-link${guidesActive ? " active" : ""}"${guidesActive ? ' aria-current="page"' : ""} href="${BASE}/guides/">guides<span class="count">${DB.guides.length}</span></a>`;
 
     els.nav.innerHTML = html;
   }
@@ -87,7 +90,7 @@
       return `<div class="content-inner"><div class="empty">
         <div class="big">no matches</div>
         <p>Nothing for &ldquo;${esc(q)}&rdquo;. Try a broader term, or <a href="${BASE}/">browse the directory</a>.</p>
-      </div></div>`;
+      </div></div>` + BF.footerHTML();
     }
 
     const guideBlock = guideHits.length ? `
@@ -105,9 +108,9 @@
     return `
       <div class="content-inner">
         <div class="page-head"><h2>search</h2>
-        <p class="page-sub">${results.length + guideHits.length} result${results.length + guideHits.length === 1 ? "" : "s"} for &ldquo;${esc(q)}&rdquo;</p></div>
+        <p class="page-sub" role="status">${results.length + guideHits.length} result${results.length + guideHits.length === 1 ? "" : "s"} for &ldquo;${esc(q)}&rdquo;</p></div>
         ${guideBlock}${resBlock}
-      </div>`;
+      </div>` + BF.footerHTML();
   }
 
   /* ── per-route <head> (title, description, canonical, og:url) ─────── */
@@ -141,7 +144,11 @@
   }
 
   /* ── main render ─────────────────────────────────────────────────── */
-  function render() {
+  // opts.focus — true for real navigation (link click / popstate): move focus
+  // to the routed <main> and reset scroll, so keyboard/SR users land on the new
+  // page. Omitted for in-place updates (typing in search, toggling a filter).
+  function render(opts) {
+    opts = opts || {};
     const q = searchQuery.trim().toLowerCase();
     if (q.length >= 2) {
       els.content.innerHTML = renderSearch(q);
@@ -152,7 +159,10 @@
     }
     buildNav();
     bindViewEvents();
-    window.scrollTo({ top: 0 });
+    if (opts.focus) {
+      els.content.focus();
+      window.scrollTo({ top: 0 });
+    }
   }
 
   function bindViewEvents() {
@@ -175,8 +185,8 @@
     });
     window.addEventListener("popstate", () => {
       activeTag = null;
-      if (searchQuery) { searchQuery = ""; els.search.value = ""; }
-      render();
+      if (searchQuery) { searchQuery = ""; els.search.value = ""; syncClear(); }
+      render({ focus: true });
     });
   }
 
@@ -210,11 +220,27 @@
   }
 
   /* ── search ──────────────────────────────────────────────────────── */
+  // show the clear (✕) button only when the field has text; swap it for the
+  // "/" shortcut hint, which is only useful when the field is empty
+  function syncClear() {
+    const hasText = !!els.search.value;
+    if (els.searchClear) els.searchClear.hidden = !hasText;
+    if (els.searchKbd) els.searchKbd.hidden = hasText;
+  }
+  function clearSearch(refocus) {
+    els.search.value = "";
+    searchQuery = "";
+    syncClear();
+    if (refocus) els.search.focus(); else els.search.blur();
+    render();
+  }
   function initSearch() {
-    els.search.addEventListener("input", () => { searchQuery = els.search.value; render(); });
+    els.search.addEventListener("input", () => { searchQuery = els.search.value; syncClear(); render(); });
+    if (els.searchClear) els.searchClear.addEventListener("click", () => clearSearch(true));
+    syncClear();
     document.addEventListener("keydown", (e) => {
       if (e.key === "/" && document.activeElement !== els.search) { e.preventDefault(); els.search.focus(); }
-      if (e.key === "Escape" && document.activeElement === els.search) { els.search.value = ""; searchQuery = ""; els.search.blur(); render(); }
+      if (e.key === "Escape" && document.activeElement === els.search) { clearSearch(false); }
     });
   }
 

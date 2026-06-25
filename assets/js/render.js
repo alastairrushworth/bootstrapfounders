@@ -11,6 +11,11 @@
   const ORIGIN = "https://alastairrushworth.com";
   const BASE = "/bootstrapfounders";       // project-page path mounted under the apex
   const BASE_URL = ORIGIN + BASE;           // canonical site root (origin + base)
+  const REPO = "https://github.com/alastairrushworth/bootstrapfounders";
+  const OG_IMAGE = BASE_URL + "/assets/og.png";
+  // set by the prerenderer (global.BF_BUILD_DATE) so JSON-LD/sitemap carry a
+  // freshness date; empty in the browser, where JSON-LD is never re-emitted.
+  const BUILD_DATE = root.BF_BUILD_DATE || "";
 
   /* ── helpers ─────────────────────────────────────────────────────── */
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
@@ -26,10 +31,12 @@
   const FLAG_TAGS = new Set(["must-read", "must-listen", "must-watch", "must-do", "free"]);
 
   // categories whose rows get a local thumbnail at assets/img/<id>/<slug>.<ext>
-  //  cover = full-bleed art/avatar (jpg) · fav = site icon on a tile (png)
+  //  cover = full-bleed square art/avatar (jpg) · fav = site icon on a light
+  //  tile (png) · book = portrait cover (jpg)
   const THUMB = {
     podcasts:    { kind: "cover", ext: "jpg" },
     youtube:     { kind: "cover", ext: "jpg" },
+    books:       { kind: "book",  ext: "jpg" },
     reading:     { kind: "fav",   ext: "png" },
     communities: { kind: "fav",   ext: "png" },
     launch:      { kind: "fav",   ext: "png" },
@@ -47,7 +54,7 @@
     const t = THUMB[catId];
     // onerror removes the <img> so a missing file degrades to a plain row
     const thumb = t
-      ? `<img class="row-thumb${t.kind === "fav" ? " fav" : ""}" src="${BASE}/assets/img/${catId}/${slugify(item.name)}.${t.ext}" alt="" loading="lazy" onerror="this.remove()" />`
+      ? `<img class="row-thumb${t.kind !== "cover" ? " " + t.kind : ""}" src="${BASE}/assets/img/${catId}/${slugify(item.name)}.${t.ext}" alt="" loading="lazy" onerror="this.remove()" />`
       : "";
     return `
       <a class="row${t ? " has-thumb" : ""}" href="${esc(item.url)}" target="_blank" rel="noopener">
@@ -159,8 +166,9 @@
     const g = DB.guides.find((x) => x.slug === slug);
     if (!g) return renderNotFound();
     const idx = DB.guides.findIndex((x) => x.slug === slug);
-    const prev = DB.guides[(idx - 1 + DB.guides.length) % DB.guides.length];
-    const next = DB.guides[(idx + 1) % DB.guides.length];
+    // real boundaries (no wrap-around): first guide has no prev, last has no next
+    const prev = idx > 0 ? DB.guides[idx - 1] : null;
+    const next = idx < DB.guides.length - 1 ? DB.guides[idx + 1] : null;
 
     const related = relatedGuides(g, 3);
     const relatedBlock = related.length ? `
@@ -178,8 +186,8 @@
           <hr class="rule" />
           <div class="article-body">${g.body}</div>
           <nav class="article-foot" aria-label="guide navigation">
-            ${prev.slug !== g.slug ? `<a class="prev" href="${BASE}/guide/${prev.slug}/">&larr; ${esc(prev.title)}</a>` : `<a href="${BASE}/guides/">&larr; all guides</a>`}
-            ${next.slug !== g.slug ? `<a class="next" href="${BASE}/guide/${next.slug}/">${esc(next.title)} &rarr;</a>` : ""}
+            ${prev ? `<a class="prev" href="${BASE}/guide/${prev.slug}/">&larr; ${esc(prev.title)}</a>` : `<a href="${BASE}/guides/">&larr; all guides</a>`}
+            ${next ? `<a class="next" href="${BASE}/guide/${next.slug}/">${esc(next.title)} &rarr;</a>` : `<a class="next" href="${BASE}/guides/">all guides &rarr;</a>`}
           </nav>
         </article>
         ${relatedBlock}
@@ -192,17 +200,33 @@
     </div></div>`;
   }
 
+  /* ── site footer (rendered into every view; baked + re-rendered alike) ─ */
+  function footerHTML() {
+    const suggest = REPO + "/issues/new?title=" +
+      encodeURIComponent("Suggest a resource") +
+      "&body=" + encodeURIComponent("Name:\nURL:\nCategory:\nWhy it's worth a bootstrapper's time:");
+    return `
+      <div class="content-inner">
+        <footer class="site-foot">
+          <span>// a community field guide &middot; <a href="${REPO}" target="_blank" rel="noopener">source on GitHub</a> &middot; free to use &amp; adapt</span>
+          <span><a href="${suggest}" target="_blank" rel="noopener">suggest a resource &rarr;</a></span>
+        </footer>
+      </div>`;
+  }
+
   /* ── dispatcher ──────────────────────────────────────────────────── */
   // route: { name, id?, slug? } · opts: { activeTag? }
   function pageContent(route, opts) {
     opts = opts || {};
+    let view;
     switch (route.name) {
-      case "category": return renderCategory(route.id, opts.activeTag || null);
-      case "guides":   return renderGuides();
-      case "guide":    return renderGuide(route.slug);
-      case "notfound": return renderNotFound();
-      default:         return renderHome();
+      case "category": view = renderCategory(route.id, opts.activeTag || null); break;
+      case "guides":   view = renderGuides(); break;
+      case "guide":    view = renderGuide(route.slug); break;
+      case "notfound": view = renderNotFound(); break;
+      default:         view = renderHome();
     }
+    return view + footerHTML();
   }
 
   /* ── per-route <head> metadata (title, description, canonical, JSON-LD) ─ */
@@ -220,6 +244,20 @@
     };
   }
 
+  // BreadcrumbList: Home › <crumb> for a sub-page
+  function jsonldBreadcrumb(crumbs) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: crumbs.map((c, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: c.name,
+        item: c.url,
+      })),
+    };
+  }
+
   function headFor(route) {
     if (route.name === "category") {
       const cat = DB.categories.find((c) => c.id === route.id);
@@ -229,18 +267,24 @@
           title: cat.label + TITLE_SUFFIX,
           description: cat.blurb,
           path: `/${cat.id}/`,
-          jsonld: {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            name: cat.label,
-            description: cat.blurb,
-            itemListElement: items.map((it, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              url: it.url,
-              name: it.name,
-            })),
-          },
+          jsonld: [
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              name: cat.label,
+              description: cat.blurb,
+              itemListElement: items.map((it, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: it.url,
+                name: it.name,
+              })),
+            },
+            jsonldBreadcrumb([
+              { name: "bootstrapfounders", url: BASE_URL + "/" },
+              { name: cat.label, url: `${BASE_URL}/${cat.id}/` },
+            ]),
+          ],
         };
       }
     }
@@ -255,19 +299,36 @@
     if (route.name === "guide") {
       const g = DB.guides.find((x) => x.slug === route.slug);
       if (g) {
+        const guideUrl = `${BASE_URL}/guide/${g.slug}/`;
+        const article = {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: g.title,
+          description: g.summary,
+          url: guideUrl,
+          mainEntityOfPage: guideUrl,
+          image: OG_IMAGE,
+          articleBody: stripTags(g.body).slice(0, 600),
+          author: { "@type": "Organization", name: "bootstrapfounders" },
+          publisher: {
+            "@type": "Organization",
+            name: "bootstrapfounders",
+            logo: { "@type": "ImageObject", url: BASE_URL + "/assets/icons/icon-512.png" },
+          },
+        };
+        if (BUILD_DATE) article.dateModified = BUILD_DATE;
         return {
           title: g.title + TITLE_SUFFIX,
           description: g.summary,
           path: `/guide/${g.slug}/`,
-          jsonld: {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: g.title,
-            description: g.summary,
-            url: `${BASE_URL}/guide/${g.slug}/`,
-            articleBody: stripTags(g.body).slice(0, 600),
-            author: { "@type": "Organization", name: "bootstrapfounders" },
-          },
+          jsonld: [
+            article,
+            jsonldBreadcrumb([
+              { name: "bootstrapfounders", url: BASE_URL + "/" },
+              { name: "Guides", url: BASE_URL + "/guides/" },
+              { name: g.title, url: guideUrl },
+            ]),
+          ],
         };
       }
     }
@@ -287,7 +348,7 @@
 
   root.BF = {
     BASE, BASE_URL, esc, slugify, stripTags,
-    rowHTML, navRowHTML,
+    rowHTML, navRowHTML, footerHTML,
     pageContent, renderNotFound, headFor, allRoutes,
   };
 })(typeof window !== "undefined" ? window : globalThis);
