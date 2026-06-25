@@ -30,7 +30,6 @@
   const THUMB = {
     podcasts:    { kind: "cover", ext: "jpg" },
     youtube:     { kind: "cover", ext: "jpg" },
-    tools:       { kind: "fav",   ext: "png" },
     reading:     { kind: "fav",   ext: "png" },
     communities: { kind: "fav",   ext: "png" },
     launch:      { kind: "fav",   ext: "png" },
@@ -78,14 +77,6 @@
       </a>`;
   }
 
-  function footerHTML() {
-    return `
-      <footer class="site-foot">
-        <span>bootstrapfounders &mdash; an open field guide. built static, no tracking.</span>
-        <span><a href="https://github.com/alastairrushworth/bootstrapfounders" target="_blank" rel="noopener">contribute &rarr;</a></span>
-      </footer>`;
-  }
-
   /* ── views ───────────────────────────────────────────────────────── */
   function renderHome() {
     const cats = DB.categories.map((c) =>
@@ -99,8 +90,8 @@
         <section class="lede">
           <p class="tag-line">// a field guide for technical founders</p>
           <h1>Bootstrap your idea into a <span class="accent">real business</span>.</h1>
-          <p>A minimal directory and wiki of what a technically-minded founder needs to go from idea to paying customers &mdash; without raising a round. The podcasts, books, tools and playbooks that actually move the needle.</p>
-          <p class="meta"><b>${totalResources()}</b> resources &middot; <b>${DB.categories.length}</b> categories &middot; <b>${DB.guides.length}</b> playbooks &middot; no tracking</p>
+          <p>A minimal directory and wiki of what a technically-minded founder needs to go from idea to paying customers &mdash; without raising a round. The podcasts, books and guides that actually move the needle.</p>
+          <p class="meta"><b>${totalResources()}</b> resources &middot; <b>${DB.categories.length}</b> categories &middot; <b>${DB.guides.length}</b> guides &middot; no tracking</p>
         </section>
 
         <section class="block">
@@ -110,12 +101,10 @@
         </section>
 
         <section class="block">
-          <h2 class="block-title">playbooks</h2>
+          <h2 class="block-title">guides</h2>
           <p class="block-sub">The wiki bit &mdash; opinionated, tactical guides on validation, traction, pricing and launching.</p>
           <div class="list">${guides}</div>
         </section>
-
-        ${footerHTML()}
       </div>`;
   }
 
@@ -141,7 +130,6 @@
         ${filters}
         <p class="results-meta">${shown.length} of ${items.length}${activeTag ? ` &middot; filtered by #${esc(activeTag)}` : ""}</p>
         <div class="list">${shown.map((it) => rowHTML(it, null, id)).join("")}</div>
-        ${footerHTML()}
       </div>`;
   }
 
@@ -150,9 +138,8 @@
       navRowHTML(`${BASE}/guide/${g.slug}/`, g.title, "", g.summary)).join("");
     return `
       <div class="content-inner">
-        <div class="page-head"><h2>guides</h2><p class="page-sub">Opinionated, tactical playbooks. Less directory, more wiki.</p></div>
+        <div class="page-head"><h2>guides</h2><p class="page-sub">Opinionated, tactical guides. Less directory, more wiki.</p></div>
         <div class="list">${guides}</div>
-        ${footerHTML()}
       </div>`;
   }
 
@@ -178,7 +165,7 @@
     const related = relatedGuides(g, 3);
     const relatedBlock = related.length ? `
       <section class="related">
-        <h2 class="block-title">related playbooks</h2>
+        <h2 class="block-title">related guides</h2>
         <div class="list">${related.map((r) => navRowHTML(`${BASE}/guide/${r.slug}/`, r.title, "", r.summary)).join("")}</div>
       </section>` : "";
 
@@ -196,7 +183,6 @@
           </nav>
         </article>
         ${relatedBlock}
-        ${footerHTML()}
       </div>`;
   }
 
@@ -222,7 +208,7 @@
   /* ── per-route <head> metadata (title, description, canonical, JSON-LD) ─ */
   const TITLE_SUFFIX = " · bootstrapfounders";
   const HOME_TITLE = "bootstrapfounders — a field guide for technical founders";
-  const HOME_DESC = "A minimal directory and wiki for technically-minded founders bootstrapping a startup: podcasts, video, books, newsletters, communities, tools, launch platforms and practical traction playbooks.";
+  const HOME_DESC = "A minimal directory and wiki for technically-minded founders bootstrapping a startup: podcasts, video, books, newsletters, communities, launch platforms and practical traction guides.";
 
   function jsonldWebsite() {
     return {
@@ -261,7 +247,7 @@
     if (route.name === "guides") {
       return {
         title: "Guides" + TITLE_SUFFIX,
-        description: "Opinionated, tactical playbooks for bootstrappers: idea validation, first customers, traction channels, pricing, building in public, launching, SEO and cold outreach.",
+        description: "Opinionated, tactical guides for bootstrappers: idea validation, first customers, traction channels, pricing, building in public, launching, SEO and cold outreach.",
         path: "/guides/",
         jsonld: null,
       };
@@ -301,7 +287,7 @@
 
   root.BF = {
     BASE, BASE_URL, esc, slugify, stripTags,
-    rowHTML, navRowHTML, footerHTML,
+    rowHTML, navRowHTML,
     pageContent, renderNotFound, headFor, allRoutes,
   };
 })(typeof window !== "undefined" ? window : globalThis);
