@@ -6,32 +6,37 @@ It curates the best **podcasts, YouTube channels, books, newsletters & blogs, co
 
 ## Features
 
-- **Zero dependencies, zero build step.** Pure HTML / CSS / vanilla JS — open `index.html` and it works.
+- **Zero runtime dependencies.** Pure HTML / CSS / vanilla JS. The only build step is a dependency-free Node prerender.
+- **Real, crawlable URLs.** History-API routing (`/podcasts/`, `/guide/pricing/`) — every page is prerendered to static HTML with its own `<title>`, meta description, canonical, Open Graph tags and JSON-LD, plus a generated `sitemap.xml`.
 - **Live search** across every resource and guide (press `/` to focus).
 - **Category browsing** with per-category **tag filters**.
-- **Wiki-style guides** rendered from a single content file.
-- **Dark / light mode** (remembered between visits).
+- **Wiki-style guides** rendered from a single content file, with prev / next and related-playbook links.
+- **Dark / light mode** that respects your OS preference on first visit and is remembered after.
+- **Accessible:** skip link, keyboard-focus styles, ARIA state on the controls, AA-contrast text.
 - **Fully responsive** with a collapsible mobile sidebar.
 
 ## Run it locally
 
-It's a static site, so just open the file:
+The home page works straight from the file:
 
 ```bash
 open index.html
 ```
 
-…or serve it (nicer for hash routing & caching):
+For the full multi-page experience (deep links, real URLs), build and serve the prerendered site:
 
 ```bash
-python3 -m http.server 8000   # then visit http://localhost:8000
+node scripts/prerender.js          # builds ./dist
+cd dist && python3 -m http.server 8000   # visit http://localhost:8000
 ```
+
+> History-API routing means deep links (e.g. `/guide/pricing/`) need a server that serves the matching file — `open index.html` only renders the home route.
 
 ## Deploy
 
-Drop the folder onto any static host — **GitHub Pages**, **Netlify**, **Vercel**, **Cloudflare Pages**, S3, etc. No configuration needed.
+A GitHub Actions workflow (`.github/workflows/deploy.yml`) runs the prerender and publishes **`dist/`** to **GitHub Pages** on every push to `main`. Just enable Pages → *GitHub Actions* as the source.
 
-For **GitHub Pages**: push to `main`, then enable Pages → *Deploy from branch* → `main` / root.
+To deploy elsewhere (**Netlify**, **Vercel**, **Cloudflare Pages**, S3, …), run `node scripts/prerender.js` and upload the resulting `dist/` folder. A second workflow (`links.yml`) sweeps every external URL weekly and opens an issue if any rot.
 
 ## Adding or editing content
 
@@ -63,7 +68,10 @@ Tags `must-read`, `must-listen`, `must-watch`, `must-do` and `free` get a highli
 }
 ```
 
-**Add a whole category** by appending to the `categories` array and adding a matching array keyed by its `id`.
+Inside a guide `body`, link to another guide with a real path —
+`<a href="/guide/<slug>/">…</a>` — not a `#` fragment.
+
+**Add a whole category** by appending to the `categories` array and adding a matching array keyed by its `id`. New categories and guides are picked up by the prerenderer and sitemap automatically.
 
 ## Thumbnails
 
@@ -89,17 +97,28 @@ python3 scripts/fetch_favicons.py   # site icons (apple-touch-icon, falling back
 ## Structure
 
 ```
-index.html               # shell: top bar, sidebar, content mount
+index.html               # shell: top bar, sidebar, content mount + the prerender marker
 CNAME                     # custom domain for GitHub Pages
+robots.txt               # points crawlers at the sitemap
+site.webmanifest         # PWA manifest (installable, app icons)
 assets/
   css/styles.css         # all styling + theming
   js/data.js             # ← all content lives here
-  js/app.js              # routing, search, filtering, rendering
+  js/render.js           # shared, DOM-free templates + per-route <head> metadata
+  js/app.js              # History routing, search, filtering, theme, mobile nav
   img/<category>/        # bundled row thumbnails
+  icons/                 # app icons (apple-touch, 192/512, maskable)
+  og.png                 # 1200×630 social card
 scripts/
+  prerender.js           # builds ./dist (static pages + sitemap.xml) using render.js
   fetch_images.py        # cover art + avatars
   fetch_favicons.py      # site icons
+dist/                    # prerender output (gitignored) — this is what gets deployed
 ```
+
+`render.js` is the single source of truth for markup: both the browser SPA
+(`app.js`) and the Node prerenderer (`prerender.js`) import it, so static
+pages and client navigation can't drift.
 
 ## License
 
