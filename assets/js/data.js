@@ -13,7 +13,6 @@ window.DB = {
     { id: "books",       label: "Books", blurb: "The canon. Read these before you write a line of code." },
     { id: "reading",     label: "Newsletters & Blogs", blurb: "Subscribe once, learn forever. The essays and lists worth your inbox." },
     { id: "communities", label: "Communities", blurb: "Where bootstrappers hang out, ship in public and swap notes." },
-    { id: "tools",       label: "Tools", blurb: "The lean stack: build, charge, measure, market." },
     { id: "launch",      label: "Launch Platforms", blurb: "Where to put your thing in front of people on day one." },
   ],
 
@@ -29,8 +28,9 @@ window.DB = {
     { name: "Build Your SaaS", url: "https://saas.transistor.fm/", by: "Justin Jackson & Jon Buda", desc: "Two founders building Transistor in public — real numbers, real decisions, episode by episode.", tags: ["saas", "build-in-public"] },
     { name: "Software Social", url: "https://softwaresocial.dev/", by: "Michele Hansen & Colleen Schnettler", desc: "Two bootstrappers talk weekly about the actual day-to-day of running tiny software businesses.", tags: ["bootstrapping", "build-in-public"] },
     { name: "How I Built This", url: "https://www.npr.org/podcasts/510313/how-i-built-this", by: "Guy Raz (NPR)", desc: "Origin stories of well-known companies and the messy early days behind them. Inspirational fuel.", tags: ["stories", "inspiration"] },
-    { name: "The Tim Ferriss Show", url: "https://tim.blog/podcast/", by: "Tim Ferriss", desc: "Deconstructs world-class performers' habits and tactics. The 4-Hour-Workweek author's long-running interview show.", tags: ["tactics", "interviews"] },
-    { name: "a16z Podcast", url: "https://a16z.com/podcasts/", by: "Andreessen Horowitz", desc: "Tech trends, markets and how to think about emerging tech. Useful even if you never raise.", tags: ["trends", "strategy"] },
+    { name: "Tropical MBA", url: "https://www.tropicalmba.com/", by: "Dan Andrews & Ian Schoen", desc: "Location-independent entrepreneurship and small, profitable businesses — building a life and a company on your own terms.", tags: ["lifestyle", "bootstrapping"] },
+    { name: "Bootstrapped Web", url: "https://bootstrappedweb.com/", by: "Brian Casel & Jordan Gal", desc: "Two SaaS founders talk through the real, in-progress decisions of running and growing bootstrapped products.", tags: ["saas", "build-in-public"] },
+    { name: "ZenFounder", url: "https://zenfounder.com/", by: "Dr. Sherry Walling", desc: "The one about the founder, not the funnel — mental health, burnout and staying sane while you build.", tags: ["wellbeing", "founder"] },
   ],
 
   /* ---- YOUTUBE --------------------------------------------------------- */
@@ -44,6 +44,10 @@ window.DB = {
     { name: "Ali Abdaal", url: "https://www.youtube.com/@aliabdaal", by: "Ali Abdaal", desc: "Productivity, the creator economy and building an audience-driven business. Great for solopreneurs.", tags: ["productivity", "audience"] },
     { name: "The Futur", url: "https://www.youtube.com/@thefutur", by: "Chris Do", desc: "Positioning, pricing and selling for creative founders. Worth it for the sales psychology alone.", tags: ["sales", "positioning"] },
     { name: "Fireship", url: "https://www.youtube.com/@Fireship", by: "Jeff Delaney", desc: "100-second tech explainers and ship-it tutorials. Keep your technical stack-radar current.", tags: ["dev", "tech"] },
+    { name: "Alex Hormozi", url: "https://www.youtube.com/@AlexHormozi", by: "Alex Hormozi", desc: "Blunt, high-density advice on crafting offers, sales and getting customers, from someone who's scaled several companies.", tags: ["sales", "offers"] },
+    { name: "Dan Martell", url: "https://www.youtube.com/@DanMartell", by: "Dan Martell", desc: "SaaS growth and founder productivity — systems, hiring and buying back your time as you scale past yourself.", tags: ["saas", "productivity"] },
+    { name: "Theo – t3.gg", url: "https://www.youtube.com/@t3dotgg", by: "Theo Browne", desc: "Opinionated, current takes on the modern web stack for technical founders who want to ship SaaS fast.", tags: ["dev", "saas"] },
+    { name: "Smart Passive Income", url: "https://www.youtube.com/@smartpassiveincome", by: "Pat Flynn", desc: "Audience-building, email and online-business tactics from one of the most transparent creators around.", tags: ["audience", "marketing"] },
   ],
 
   /* ---- BOOKS ----------------------------------------------------------- */
@@ -64,6 +68,14 @@ window.DB = {
     { name: "The Personal MBA", url: "https://personalmba.com/", by: "Josh Kaufman", desc: "A crash course in the core mental models of business — value creation, marketing, sales, finance, systems.", tags: ["fundamentals", "thinking"] },
     { name: "This Is Marketing", url: "https://seths.blog/tim/", by: "Seth Godin", desc: "Marketing as service: find your smallest viable audience and earn permission rather than interrupt.", tags: ["marketing", "philosophy"] },
     { name: "Founders at Work", url: "https://www.amazon.com/dp/1430210788", by: "Jessica Livingston", desc: "Interviews with founders about the chaotic, uncertain early days. Reassuring proof everyone wings it.", tags: ["stories", "inspiration"] },
+    { name: "Rework", url: "https://basecamp.com/books/rework", by: "Jason Fried & David Heinemeier Hansson", desc: "The bootstrapper's manifesto from 37signals: stay small, skip the funding, ignore the 'real world' and just ship.", tags: ["bootstrapping", "philosophy", "must-read"] },
+    { name: "The SaaS Playbook", url: "https://saasplaybook.com/", by: "Rob Walling", desc: "A modern, no-fluff operating manual for building a bootstrapped SaaS — the distilled lessons of MicroConf and TinySeed.", tags: ["saas", "bootstrapping"] },
+    { name: "Deploy Empathy", url: "https://deployempathy.com/", by: "Michele Hansen", desc: "A practical guide to customer interviews: how to ask, listen and uncover what people really need. Pairs with The Mom Test.", tags: ["validation", "customers"] },
+    { name: "$100M Offers", url: "https://www.acquisition.com/books", by: "Alex Hormozi", desc: "How to make an offer so good people feel stupid saying no. The most actionable book on pricing and packaging in years.", tags: ["offers", "pricing", "sales"] },
+    { name: "Anything You Want", url: "https://sive.rs/book/AnythingYouWant", by: "Derek Sivers", desc: "Forty short lessons from building and selling CD Baby. A two-hour read packed with contrarian, bootstrapper-friendly wisdom.", tags: ["philosophy", "bootstrapping"] },
+    { name: "Million Dollar Weekend", url: "https://milliondollarweekend.com/", by: "Noah Kagan", desc: "A bias-to-action playbook: overcome the fear of asking, validate fast and get to your first dollar this weekend.", tags: ["validation", "action"] },
+    { name: "Influence", url: "https://www.influenceatwork.com/", by: "Robert Cialdini", desc: "The six principles of persuasion every marketer eventually rediscovers. Read the source instead of the blog posts.", tags: ["marketing", "psychology"] },
+    { name: "Don't Make Me Think", url: "https://sensible.com/dont-make-me-think/", by: "Steve Krug", desc: "The classic on web usability. Short, funny, and the fastest way to stop your signup flow from leaking users.", tags: ["product", "ux"] },
   ],
 
   /* ---- NEWSLETTERS & BLOGS -------------------------------------------- */
@@ -80,6 +92,10 @@ window.DB = {
     { name: "Julian Shapiro's Handbooks", url: "https://www.julian.com/", by: "Julian Shapiro", desc: "Free, beautifully written guides to growth marketing, writing and startups. Start with the Growth guide.", tags: ["growth", "writing", "free"] },
     { name: "First Round Review", url: "https://review.firstround.com/", by: "First Round Capital", desc: "In-depth, tactical articles from operators on company-building. High signal, no ads.", tags: ["operations", "tactics", "free"] },
     { name: "Indie Hackers", url: "https://www.indiehackers.com/", by: "Courtland Allen", desc: "Part forum, part directory of revenue numbers and interviews from real bootstrapped products.", tags: ["bootstrapping", "community", "free"] },
+    { name: "The Saturday Solopreneur", url: "https://www.justinwelsh.me/", by: "Justin Welsh", desc: "Tactical, one-idea emails on building a one-person business and an audience. He's built two $1M+ solo brands in public.", tags: ["solo", "audience", "free"] },
+    { name: "Growth.Design", url: "https://growth.design/", by: "Growth.Design", desc: "Product and UX case studies told as illustrated comics — the psychology behind why great products convert and retain.", tags: ["product", "ux", "free"] },
+    { name: "Andrew Chen", url: "https://andrewchen.com/", by: "Andrew Chen", desc: "A deep, free archive on growth, network effects and the 'cold start problem' of getting a product off the ground.", tags: ["growth", "free"] },
+    { name: "The Hustle", url: "https://thehustle.co/", by: "The Hustle", desc: "A snappy daily email on business and tech news — a low-effort way to keep your finger on the market's pulse.", tags: ["news", "trends", "free"] },
   ],
 
   /* ---- COMMUNITIES ----------------------------------------------------- */
@@ -93,37 +109,9 @@ window.DB = {
     { name: "MicroConf Connect", url: "https://microconfconnect.com/", by: "Rob Walling / MicroConf", desc: "Slack community for bootstrapped & self-funded SaaS founders, organised by stage and topic.", tags: ["saas", "slack", "bootstrapping"] },
     { name: "Startup School", url: "https://www.startupschool.org/", by: "Y Combinator", desc: "Free online program with curriculum, a founder community and co-founder matching.", tags: ["education", "community", "free"] },
     { name: "Dynamite Circle", url: "https://www.dynamitecircle.com/", by: "Tropical MBA", desc: "Established paid community for location-independent founders running profitable businesses.", tags: ["paid", "lifestyle"] },
-  ],
-
-  /* ---- TOOLS (grouped by job-to-be-done) ------------------------------ */
-  tools: [
-    // build
-    { name: "Next.js", url: "https://nextjs.org/", by: "Vercel", desc: "The default React framework for shipping full-stack web apps fast.", tags: ["build", "framework"] },
-    { name: "Supabase", url: "https://supabase.com/", by: "Supabase", desc: "Postgres database, auth, storage and APIs out of the box. The open-source Firebase for indie devs.", tags: ["build", "backend", "database"] },
-    { name: "Vercel", url: "https://vercel.com/", by: "Vercel", desc: "Zero-config deploys for front-end apps with a generous free tier. Git push → live.", tags: ["build", "hosting"] },
-    { name: "Cursor", url: "https://cursor.com/", by: "Anysphere", desc: "AI-first code editor that lets you build faster with an LLM pair-programmer baked in.", tags: ["build", "ai", "productivity"] },
-    { name: "shadcn/ui", url: "https://ui.shadcn.com/", by: "shadcn", desc: "Copy-paste, accessible React components you own. Ship a clean UI without a heavy design system.", tags: ["build", "design", "frontend"] },
-    // no-code
-    { name: "Framer", url: "https://www.framer.com/", by: "Framer", desc: "Design and publish marketing sites and landing pages without code. Fast, modern, SEO-friendly.", tags: ["no-code", "landing-page", "design"] },
-    { name: "Carrd", url: "https://carrd.co/", by: "AJ", desc: "Dead-simple one-page sites for $19/yr. Perfect for a validation landing page in an afternoon.", tags: ["no-code", "landing-page", "cheap"] },
-    { name: "Webflow", url: "https://webflow.com/", by: "Webflow", desc: "Visual web design with production-grade output and a CMS. Powerful, steeper learning curve.", tags: ["no-code", "design"] },
-    // payments
-    { name: "Stripe", url: "https://stripe.com/", by: "Stripe", desc: "The developer-favourite payments stack. Subscriptions, invoicing, checkout — start in minutes.", tags: ["payments", "build"] },
-    { name: "Lemon Squeezy", url: "https://www.lemonsqueezy.com/", by: "Lemon Squeezy", desc: "Merchant of record — handles global sales tax/VAT for you. Great for selling SaaS & digital goods.", tags: ["payments", "tax"] },
-    { name: "Paddle", url: "https://www.paddle.com/", by: "Paddle", desc: "Merchant of record for SaaS: payments, subscriptions and tax compliance bundled together.", tags: ["payments", "tax", "saas"] },
-    { name: "Gumroad", url: "https://gumroad.com/", by: "Sahil Lavingia", desc: "The fastest way to sell a digital product, ebook or course. No store to build.", tags: ["payments", "digital-products"] },
-    // analytics
-    { name: "Plausible", url: "https://plausible.io/", by: "Plausible", desc: "Lightweight, privacy-friendly, cookie-free web analytics. Simple numbers without the GA bloat.", tags: ["analytics", "privacy"] },
-    { name: "PostHog", url: "https://posthog.com/", by: "PostHog", desc: "Product analytics, session replay, feature flags and A/B tests in one open-source platform.", tags: ["analytics", "product"] },
-    // marketing / email
-    { name: "Resend", url: "https://resend.com/", by: "Resend", desc: "Developer-first transactional email API with a clean DX. Send from your app reliably.", tags: ["email", "build"] },
-    { name: "ConvertKit / Kit", url: "https://kit.com/", by: "Kit", desc: "Email marketing built for creators and indie founders. Grow and broadcast to your audience.", tags: ["email", "audience"] },
-    { name: "Loops", url: "https://loops.so/", by: "Loops", desc: "Modern email for SaaS — both marketing campaigns and transactional, with a lovely UI.", tags: ["email", "saas"] },
-    // seo / feedback / support
-    { name: "Ahrefs", url: "https://ahrefs.com/", by: "Ahrefs", desc: "The SEO toolset for keyword research, backlink analysis and finding content opportunities.", tags: ["seo", "marketing"] },
-    { name: "Canny", url: "https://canny.io/", by: "Canny", desc: "Collect and prioritise feature requests and feedback in a public roadmap your users can vote on.", tags: ["feedback", "product"] },
-    { name: "Crisp", url: "https://crisp.chat/", by: "Crisp", desc: "Affordable live chat, shared inbox and help desk so you can talk to early users directly.", tags: ["support", "customers"] },
-    { name: "ShipFast", url: "https://shipfa.st/", by: "Marc Lou", desc: "A popular Next.js boilerplate with auth, payments and emails wired up — skip the plumbing.", tags: ["build", "boilerplate"] },
+    { name: "r/startups", url: "https://www.reddit.com/r/startups/", by: "Reddit", desc: "One of the largest startup communities — feedback threads, 'share your startup' posts and a lot of hard-won advice.", tags: ["reddit", "free"] },
+    { name: "r/SideProject", url: "https://www.reddit.com/r/SideProject/", by: "Reddit", desc: "Where makers post what they're building for feedback and early users. Friendly, low-ego, great for a soft launch.", tags: ["reddit", "build-in-public", "free"] },
+    { name: "Hampton", url: "https://www.joinhampton.com/", by: "Sam Parr", desc: "A vetted, paid community for founders of more established companies. Private peer groups and candid back-room talk.", tags: ["paid", "founder"] },
   ],
 
   /* ---- LAUNCH PLATFORMS ----------------------------------------------- */
@@ -137,6 +125,10 @@ window.DB = {
     { name: "Microlaunch", url: "https://microlaunch.net/", by: "Microlaunch", desc: "A calmer, indie alternative launch platform for makers who want a less cut-throat day.", tags: ["launch", "indie"] },
     { name: "AppSumo", url: "https://appsumo.com/", by: "AppSumo", desc: "Lifetime-deal marketplace. Can drive a big slug of cash and users — at a steep discount. Read the fine print.", tags: ["launch", "deals", "revenue"] },
     { name: "X / Twitter", url: "https://x.com/", by: "X", desc: "Build-in-public on X to warm up an audience before launch, then post your launch thread to them.", tags: ["launch", "audience", "free"] },
+    { name: "LinkedIn", url: "https://www.linkedin.com/", by: "LinkedIn", desc: "Underrated for B2B: build in public to a professional audience, then launch to the buyers and operators who'll actually pay.", tags: ["launch", "b2b", "audience"] },
+    { name: "Uneed", url: "https://www.uneed.best/", by: "Uneed", desc: "A popular Product Hunt alternative with daily and weekly leaderboards and a friendlier, less cut-throat vibe.", tags: ["launch", "indie"] },
+    { name: "Dev Hunt", url: "https://devhunt.org/", by: "DevHunt", desc: "A launch board specifically for developer tools — the right room if you're shipping something technical.", tags: ["launch", "technical", "free"] },
+    { name: "Fazier", url: "https://fazier.com/", by: "Fazier", desc: "A newer launch platform for makers, with badges and an embeddable widget to collect upvotes from your own site.", tags: ["launch", "indie"] },
   ],
 
   /* ---- GUIDES (the wiki bit) ------------------------------------------ */
@@ -367,6 +359,195 @@ window.DB = {
         </ul>
 
         <blockquote>The mindset shift: you're not interrupting them to take something. You're offering a specific person a specific solution to a specific problem. If that's not true, don't send the email.</blockquote>
+      `,
+    },
+    {
+      slug: "find-an-idea",
+      title: "Finding an idea worth building",
+
+      summary: "Where good startup ideas actually come from — and how to tell a real one from a shiny one.",
+      tags: ["ideas", "validation"],
+      body: `
+        <p>Most founders start from the wrong end — they fall in love with a solution and go hunting for a problem to attach it to. Better ideas come from the opposite direction: notice a problem worth solving first, then build the smallest thing that solves it.</p>
+
+        <h3>Notice, don't brainstorm</h3>
+        <p>The best ideas rarely arrive in a brainstorm. They show up as friction in your own life and work — the thing you've built a spreadsheet to cope with, the task you dread, the tool you keep wishing existed. Keep a running note of these annoyances for a month and patterns emerge.</p>
+
+        <h3>Scratch your own itch</h3>
+        <p>Building for yourself is an unfair advantage: you <em>are</em> the customer, so you already understand the problem, the jargon and where the existing tools fall short. Plenty of bootstrapped classics — Basecamp, Nomad List — began as a founder solving their own problem.</p>
+
+        <h3>Sell pickaxes</h3>
+        <p>Look for places where money already moves. People and businesses happily pay to make money, save money, save time or reduce risk. An idea that sits next to an existing budget is far easier to monetise than one that needs you to create a brand-new habit from scratch.</p>
+
+        <h3>Filters for a real idea</h3>
+        <ul>
+          <li><strong>Is the pain frequent and urgent?</strong> Vitamins are nice; painkillers get bought.</li>
+          <li><strong>Can you reach the buyers?</strong> A great idea for an audience you can't access is somebody else's idea.</li>
+          <li><strong>Will they pay?</strong> "That's cool" is not a business. Someone reaching for their card is.</li>
+          <li><strong>Can a tiny team ship a v1?</strong> If it needs ten engineers and a year, it isn't a bootstrap.</li>
+        </ul>
+
+        <blockquote>You don't need a brilliant, original idea. You need a real problem, a reachable audience and a willingness to start small. Originality is overrated; traction isn't.</blockquote>
+
+        <p>Got a candidate? Don't build it yet — <a href="/guide/validate-idea/">validate it first</a>. For a steady stream of structured opportunities, <a href="https://trends.vc/" target="_blank" rel="noopener">Trends.vc</a> is a good prompt.</p>
+      `,
+    },
+    {
+      slug: "metrics-that-matter",
+      title: "The numbers that actually matter",
+
+      summary: "MRR, churn, LTV, CAC and runway — the small set of metrics a bootstrapper should watch, in plain English.",
+      tags: ["metrics", "saas", "revenue"],
+      body: `
+        <p>Bootstrappers don't have a finance team, so you have to be your own. The good news: a handful of numbers tell you almost everything about the health of a small software business. Ignore the vanity metrics; watch these.</p>
+
+        <h3>MRR — monthly recurring revenue</h3>
+        <p>The heartbeat of a subscription business. Track it monthly and split it into new, expansion (upgrades), contraction (downgrades) and churned revenue, so you can see <em>where</em> growth comes from — not just that it happened.</p>
+
+        <h3>Churn — the silent killer</h3>
+        <p>The percentage of customers (or revenue) you lose each month. At 5% monthly churn you replace your entire customer base every ~20 months just to stand still. Small differences compound brutally, which is why lowering churn is often higher-leverage than chasing new sign-ups. See <a href="/guide/retention/">retention beats acquisition</a>.</p>
+
+        <h3>LTV and CAC</h3>
+        <ul>
+          <li><strong>CAC</strong> (customer acquisition cost): everything you spent to win a customer, divided by customers won.</li>
+          <li><strong>LTV</strong> (lifetime value): the total profit you expect from a customer before they churn.</li>
+          <li><strong>The ratio.</strong> A rough rule is LTV at least 3× CAC. If it costs more to acquire a customer than they're worth, growth makes you poorer, not richer.</li>
+        </ul>
+
+        <h3>Runway and "default alive"</h3>
+        <p>How many months you can keep going at your current burn. Paul Graham's question is the one that matters: are you <em>default alive</em> — on track to reach profitability before the money runs out — or default dead? A bootstrapper's job is to get to default alive as fast as possible.</p>
+
+        <blockquote>Pick three numbers — for most SaaS that's MRR, churn and runway — and put them somewhere you see them weekly. What you measure, you manage.</blockquote>
+
+        <p>Healthy metrics usually start with <a href="/guide/pricing/">pricing well</a> and keeping the customers you already have.</p>
+      `,
+    },
+    {
+      slug: "positioning",
+      title: "Positioning: make them get it in 5 seconds",
+
+      summary: "If people can't tell what you do and who it's for, nothing else in your funnel works.",
+      tags: ["positioning", "marketing"],
+      body: `
+        <p>Positioning answers the question every visitor asks in the first five seconds: "what is this, who is it for, and why should I care?" Get it wrong and the best product in the world leaks visitors. Get it right and your ads, SEO and sales all suddenly work better.</p>
+
+        <h3>Positioning is context, not features</h3>
+        <p>The same product can read as boring or magic depending on the frame. April Dunford's core idea in <a href="https://www.aprildunford.com/obviously-awesome" target="_blank" rel="noopener">Obviously Awesome</a>: position against the right <em>competitive alternative</em> so your best features become obviously valuable, instead of leaving customers to guess what you replace.</p>
+
+        <h3>Niche down until it's uncomfortable</h3>
+        <p>"Project management for everyone" competes with giants and resonates with no one. "Project management for video agencies" can win a market you can actually reach. As a bootstrapper, a sharp niche is your single biggest unfair advantage — it makes your marketing write itself.</p>
+
+        <h3>Say it like a human</h3>
+        <ul>
+          <li>Lead with the outcome, not the mechanism. ("Get paid on time," not "automated invoicing workflows.")</li>
+          <li>Use the words your customers use — lift them straight from interviews and reviews.</li>
+          <li>Make the headline pass the "so what?" test. If a competitor could claim the same line, it's too generic.</li>
+        </ul>
+
+        <blockquote>Test it cheaply: show your homepage to someone in your target market for five seconds, hide it, then ask what you do and who it's for. If they can't tell you, your positioning — not your product — is the problem.</blockquote>
+
+        <p>Clear positioning makes <a href="/guide/cold-outreach/">cold outreach</a> and <a href="/guide/seo-for-founders/">SEO</a> far easier, because you finally know exactly who you're talking to.</p>
+      `,
+    },
+    {
+      slug: "retention",
+      title: "Retention beats acquisition",
+
+      summary: "A leaky bucket can't be filled. Why keeping customers is the cheapest growth you'll ever get.",
+      tags: ["retention", "saas", "growth"],
+      body: `
+        <p>Acquisition gets all the attention, but retention is where bootstrapped businesses are won or lost. A product people keep using compounds; a leaky bucket means you run faster every month just to stay in the same place.</p>
+
+        <h3>Why it's the cheapest growth</h3>
+        <p>Keeping a customer costs a fraction of winning a new one, and retained customers are the ones who upgrade, refer friends and forgive your rough edges. Better retention lifts LTV, which raises how much you can afford to spend acquiring the next customer — it quietly improves every other number. (See <a href="/guide/metrics-that-matter/">the numbers that matter</a>.)</p>
+
+        <h3>Get them to value, fast</h3>
+        <p>Most churn happens early, before the customer ever felt the product work. Define your "aha" moment — the first time someone gets real value — and ruthlessly shorten the path to it. Onboarding isn't a tour of your features; it's getting one job done.</p>
+
+        <h3>Find the leaks</h3>
+        <ul>
+          <li><strong>Talk to churned users.</strong> A short "what made you cancel?" email is the cheapest research you'll ever do.</li>
+          <li><strong>Watch where people stall.</strong> Session replay and simple funnels show where the value isn't landing.</li>
+          <li><strong>Reduce reasons to leave.</strong> Habit-forming products tie into a regular trigger — see Nir Eyal's <a href="https://www.nirandfar.com/hooked/" target="_blank" rel="noopener">Hooked</a>.</li>
+        </ul>
+
+        <blockquote>Before you pour money into the top of the funnel, plug the holes in the bottom. Fixing churn is usually the highest-ROI work a founder can do — and almost nobody wants to do it.</blockquote>
+      `,
+    },
+    {
+      slug: "owned-audience",
+      title: "Build an audience you own",
+
+      summary: "Algorithms giveth and taketh away. An email list is the one channel nobody can switch off.",
+      tags: ["audience", "email", "marketing"],
+      body: `
+        <p>Social platforms lend you an audience; they can change the rules or switch off the tap whenever they like. An email list is the one audience you actually own — a direct line to people who asked to hear from you, with no algorithm sitting in between.</p>
+
+        <h3>Why email still wins</h3>
+        <ul>
+          <li><strong>It's owned.</strong> Export the list and it comes with you anywhere.</li>
+          <li><strong>It converts.</strong> Inbox attention beats feed attention by a mile.</li>
+          <li><strong>It's your launch list.</strong> The single best predictor of a good launch day is having people to tell.</li>
+        </ul>
+
+        <h3>Start collecting before you have anything to sell</h3>
+        <p>Put a simple "get notified" form on your landing page from day one, paired with a reason to subscribe — a useful guide, a free tool, a behind-the-scenes build log. Every visitor who leaves without joining is one you'll have to pay to reach again later.</p>
+
+        <h3>Give people a reason to stay</h3>
+        <p>An audience is earned with consistent usefulness, not extracted with constant pitching. Share what you're learning, the specifics behind your wins and losses, things readers can apply even if they never buy. It pairs naturally with <a href="/guide/build-in-public/">building in public</a> — the build log feeds the list, and the list becomes your first customers.</p>
+
+        <blockquote>The best time to start your email list was the day you had the idea. The second best time is today — even if there are only ten people on it, those ten know you exist, which puts them ahead of everyone else.</blockquote>
+      `,
+    },
+    {
+      slug: "making-the-leap",
+      title: "Quitting your job: making the leap",
+
+      summary: "When to go full-time on your bootstrapped business — and how to do it without betting the house.",
+      tags: ["mindset", "money"],
+      body: `
+        <p>The romantic story is quitting your job in a blaze of conviction. The bootstrapper's version is less dramatic and far smarter: de-risk the leap so thoroughly that going full-time becomes the obvious, almost boring next step.</p>
+
+        <h3>Build on the side first</h3>
+        <p>Your job is the best startup grant you'll ever get — it funds your life with no equity, no interest and no investor calls. Use that safety to validate, launch and find your first paying customers in evenings and weekends, while the downside is still capped.</p>
+
+        <h3>Know your number</h3>
+        <p>Work out your <em>ramen number</em>: the monthly profit that covers your essential personal costs. That line matters far more than any vanity revenue figure — it's the point at which the business can keep you alive. Track it against your <a href="/guide/metrics-that-matter/">runway and MRR</a>.</p>
+
+        <h3>Pick a trigger, not a feeling</h3>
+        <ul>
+          <li><strong>Revenue trigger:</strong> e.g. "MRR covers my ramen number for three consecutive months."</li>
+          <li><strong>Savings trigger:</strong> 6–12 months of runway in the bank so a slow month doesn't trigger a panic.</li>
+          <li><strong>Time trigger:</strong> the side project is clearly capped by the hours you can't give it.</li>
+        </ul>
+
+        <blockquote>Don't leap on a good week of feelings — leap on a number you set in advance, when you were thinking clearly. The goal isn't to be brave; it's to make the brave thing safe.</blockquote>
+      `,
+    },
+    {
+      slug: "ai-leverage",
+      title: "Ship faster with AI",
+
+      summary: "How a solo founder can use AI as leverage across building, marketing and support — without shipping slop.",
+      tags: ["ai", "productivity", "build-in-public"],
+      body: `
+        <p>For a solo or tiny team, AI is the closest thing to hiring a junior teammate for every role at once — engineer, marketer, support rep, researcher. Used well, it widens what one person can ship. Used lazily, it floods the internet with forgettable slop. The difference is judgement.</p>
+
+        <h3>Where it actually helps</h3>
+        <ul>
+          <li><strong>Building:</strong> scaffolding, boilerplate, tests, debugging and learning an unfamiliar API far faster.</li>
+          <li><strong>Marketing:</strong> first drafts, turning one post into ten, keyword and competitor research, ad variations to test.</li>
+          <li><strong>Support &amp; ops:</strong> drafting replies, summarising feedback, triaging the inbox, turning docs into an FAQ.</li>
+          <li><strong>Thinking:</strong> a tireless sparring partner for pressure-testing positioning, pricing and plans.</li>
+        </ul>
+
+        <h3>Keep a human in the loop</h3>
+        <p>AI is a force multiplier, not an autopilot. It's confidently wrong often enough that you have to stay the editor: ship nothing you haven't checked, and don't let it talk to customers unsupervised in the early days. The point is to do more of the work that needs a human by handing it less of the work that doesn't.</p>
+
+        <h3>Don't automate the unscalable too early</h3>
+        <p>The manual, unscalable work that wins your <a href="/guide/first-customers/">first customers</a> — the personal onboarding calls, the hand-written emails — is exactly where you learn what to build. Automate it once you understand it, not before.</p>
+
+        <blockquote>Use AI to clear the grunt work so you can spend more time on the two things it can't do for you: talking to customers and deciding what to build. Leverage is the goal; slop is the failure mode.</blockquote>
       `,
     },
   ],

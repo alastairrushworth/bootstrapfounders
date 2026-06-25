@@ -2,7 +2,7 @@
 
 A **field guide for technically-minded founders** bootstrapping a startup idea — somewhere between a wiki and a directory.
 
-It curates the best **podcasts, YouTube channels, books, newsletters & blogs, communities, tools and launch platforms**, plus a set of opinionated, tactical **playbooks** (idea validation, getting your first 10 customers, the Bullseye traction framework, pricing, building in public, Product Hunt launches, SEO and cold outreach).
+It curates the best **podcasts, YouTube channels, books, newsletters & blogs, communities and launch platforms**, plus a set of opinionated, tactical **guides** (idea validation, getting your first 10 customers, the Bullseye traction framework, pricing, building in public, Product Hunt launches, SEO, cold outreach and more).
 
 ## Features
 
@@ -10,7 +10,7 @@ It curates the best **podcasts, YouTube channels, books, newsletters & blogs, co
 - **Real, crawlable URLs.** History-API routing under a base path — every page is prerendered to static HTML with its own `<title>`, meta description, canonical, Open Graph tags and JSON-LD, plus a generated `sitemap.xml`.
 - **Live search** across every resource and guide (press `/` to focus).
 - **Category browsing** with per-category **tag filters**.
-- **Wiki-style guides** rendered from a single content file, with prev / next and related-playbook links.
+- **Wiki-style guides** rendered from a single content file, with prev / next and related-guide links.
 - **Dark / light mode** that respects your OS preference on first visit and is remembered after.
 - **Accessible:** skip link, keyboard-focus styles, ARIA state on the controls, AA-contrast text.
 - **Fully responsive** with a collapsible mobile sidebar.
@@ -100,7 +100,7 @@ lowercased with every run of non-alphanumeric characters turned into `-`
 Two kinds, configured in the `THUMB` map in `app.js`:
 
 - **cover** (`.jpg`, full-bleed) — `podcasts`, `youtube`
-- **fav** (`.png`, site icon on a light tile) — `tools`, `reading`, `communities`, `launch`
+- **fav** (`.png`, site icon on a light tile) — `reading`, `communities`, `launch`
 
 Images are bundled locally (no external requests, nothing to break). To
 (re)generate them — macOS, needs `curl` + `sips`:
