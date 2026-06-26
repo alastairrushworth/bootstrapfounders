@@ -97,8 +97,6 @@
         <section class="lede">
           <p class="tag-line">// a field guide for technical founders</p>
           <h1>Bootstrap your idea into a <span class="accent">real business</span>.</h1>
-          <p>A minimal directory and wiki of what a technically-minded founder needs to go from idea to paying customers &mdash; without raising a round. The podcasts, books and guides that actually move the needle.</p>
-          <p class="meta"><b>${totalResources()}</b> resources &middot; <b>${DB.categories.length}</b> categories &middot; <b>${DB.guides.length}</b> guides &middot; no tracking</p>
         </section>
 
         <section class="block">
@@ -115,28 +113,16 @@
       </div>`;
   }
 
-  function renderCategory(id, activeTag) {
+  function renderCategory(id) {
     const cat = DB.categories.find((c) => c.id === id);
     if (!cat) return renderNotFound();
     const items = DB[id] || [];
 
-    const tagCounts = {};
-    items.forEach((it) => (it.tags || []).forEach((t) => (tagCounts[t] = (tagCounts[t] || 0) + 1)));
-    const tags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
-    const filters = tags.length ? `
-      <div class="filters">
-        <span class="filter${!activeTag ? " active" : ""}" data-tag="">all</span>
-        ${tags.map((t) => `<span class="filter${activeTag === t ? " active" : ""}" data-tag="${esc(t)}">${esc(t)}</span>`).join("")}
-      </div>` : "";
-
-    const shown = activeTag ? items.filter((it) => (it.tags || []).includes(activeTag)) : items;
-
     return `
       <div class="content-inner">
         <div class="page-head"><h2>${esc(cat.label)}</h2><p class="page-sub">${esc(cat.blurb)}</p></div>
-        ${filters}
-        <p class="results-meta">${shown.length} of ${items.length}${activeTag ? ` &middot; filtered by #${esc(activeTag)}` : ""}</p>
-        <div class="list">${shown.map((it) => rowHTML(it, null, id)).join("")}</div>
+        <p class="results-meta">${items.length} ${items.length === 1 ? "entry" : "entries"}</p>
+        <div class="list">${items.map((it) => rowHTML(it, null, id)).join("")}</div>
       </div>`;
   }
 
@@ -200,27 +186,17 @@
     </div></div>`;
   }
 
-  /* ── site footer (rendered into every view; baked + re-rendered alike) ─ */
+  /* ── site footer (removed) ─ */
   function footerHTML() {
-    const suggest = REPO + "/issues/new?title=" +
-      encodeURIComponent("Suggest a resource") +
-      "&body=" + encodeURIComponent("Name:\nURL:\nCategory:\nWhy it's worth a bootstrapper's time:");
-    return `
-      <div class="content-inner">
-        <footer class="site-foot">
-          <span>// a community field guide &middot; <a href="${REPO}" target="_blank" rel="noopener">source on GitHub</a> &middot; free to use &amp; adapt</span>
-          <span><a href="${suggest}" target="_blank" rel="noopener">suggest a resource &rarr;</a></span>
-        </footer>
-      </div>`;
+    return "";
   }
 
   /* ── dispatcher ──────────────────────────────────────────────────── */
-  // route: { name, id?, slug? } · opts: { activeTag? }
-  function pageContent(route, opts) {
-    opts = opts || {};
+  // route: { name, id?, slug? }
+  function pageContent(route) {
     let view;
     switch (route.name) {
-      case "category": view = renderCategory(route.id, opts.activeTag || null); break;
+      case "category": view = renderCategory(route.id); break;
       case "guides":   view = renderGuides(); break;
       case "guide":    view = renderGuide(route.slug); break;
       case "notfound": view = renderNotFound(); break;
