@@ -23,7 +23,6 @@
     body:       document.body,
   };
 
-  let activeTag = null;     // tag filter within a category view
   let searchQuery = "";
 
   const esc = BF.esc;
@@ -57,7 +56,6 @@
 
   function navigate(path) {
     if (path !== location.pathname) history.pushState({}, "", path);
-    activeTag = null;
     if (searchQuery) { searchQuery = ""; els.search.value = ""; syncClear(); }
     render({ focus: true });
   }
@@ -154,7 +152,7 @@
       els.content.innerHTML = renderSearch(q);
     } else {
       const r = currentRoute();
-      els.content.innerHTML = BF.pageContent(r, { activeTag });
+      els.content.innerHTML = BF.pageContent(r);
       updateHead(r);
     }
     buildNav();
@@ -165,11 +163,7 @@
     }
   }
 
-  function bindViewEvents() {
-    els.content.querySelectorAll(".filter").forEach((f) => {
-      f.addEventListener("click", () => { activeTag = f.dataset.tag || null; render(); });
-    });
-  }
+  function bindViewEvents() {}
 
   /* ── internal link interception (delegated) ──────────────────────── */
   function initLinks() {
@@ -184,7 +178,6 @@
       navigate(href);
     });
     window.addEventListener("popstate", () => {
-      activeTag = null;
       if (searchQuery) { searchQuery = ""; els.search.value = ""; syncClear(); }
       render({ focus: true });
     });
