@@ -138,29 +138,29 @@ window.DB = {
       slug: "validate-idea",
       title: "Validate before you build",
 
-      summary: "How to find out if anyone wants this — before you spend three months building it.",
+      summary: "How to find out if anyone wants this before you spend three months building it.",
       tags: ["validation", "customers"],
       body: `
-        <p>The most expensive mistake in bootstrapping is building something nobody wants. Validation is just reducing that risk cheaply. You don't need a product to validate — you need conversations and a signal that someone will pay.</p>
+        <p>The most expensive mistake in bootstrapping is building something nobody wants. Validation is the cheap way to find out before you spend three months coding. You don't need a product to validate. You need conversations and a signal that someone will actually pay.</p>
 
         <h3>1. Talk to people the right way</h3>
-        <p>Read <a href="https://www.momtestbook.com/" target="_blank" rel="noopener">The Mom Test</a>. The core idea: ask about their <em>past behaviour and real problems</em>, never about your idea. People lie to be nice when you pitch; they tell the truth when you ask about their life.</p>
+        <p>Read <a href="https://www.momtestbook.com/" target="_blank" rel="noopener">The Mom Test</a> by Rob Fitzpatrick. The core idea: ask about their <em>past behaviour and real problems</em>, never about your idea. People lie to be nice when you pitch them. They tell the truth when you ask about their life.</p>
         <ul>
-          <li><strong>Good:</strong> "Walk me through the last time you dealt with X."</li>
-          <li><strong>Good:</strong> "What have you already tried? What did it cost you?"</li>
-          <li><strong>Bad:</strong> "Would you use a tool that does Y?" (worthless — everyone says yes)</li>
+          <li><strong>Good:</strong> "Walk me through the last time you dealt with this."</li>
+          <li><strong>Good:</strong> "What have you already tried, and what did it cost you?"</li>
+          <li><strong>Weak:</strong> "Would you use a tool that does this?" Everyone says yes, so the answer tells you nothing.</li>
         </ul>
 
         <h3>2. Look for signals of real pain</h3>
-        <p>You're hunting for problems people already spend time or money trying to solve. Hacky spreadsheets, manual workarounds, an existing tool they hate — these are gold. "That would be nice" is not.</p>
+        <p>You are hunting for problems people already spend time or money trying to solve. Hacky spreadsheets, manual workarounds, an existing tool they openly hate. Those are the gold. "That would be nice" is not.</p>
 
         <h3>3. Get a commitment, not a compliment</h3>
-        <p>Compliments are noise. Real validation is when someone gives up something scarce: money (a pre-order, a deposit), reputation (an intro to their boss), or time (a recurring call). A landing page with a "buy / join the waitlist" button measures intent far better than a survey.</p>
+        <p>Compliments are noise. Fitzpatrick's test for real interest is whether someone gives up something scarce: money (a pre-order or a deposit), reputation (an intro to their boss), or time (a recurring call on the calendar). A landing page with a real "buy" or "join the waitlist" button measures intent far better than any survey.</p>
 
         <h3>4. Build the smallest possible test</h3>
-        <p>A one-page <a href="https://carrd.co/" target="_blank" rel="noopener">Carrd</a> site, a Stripe payment link, a concierge service you run manually behind the scenes. Charge real money as early as you can — paid pilots beat free trials for learning.</p>
+        <p>A one-page <a href="https://carrd.co/" target="_blank" rel="noopener">Carrd</a> site, a Stripe payment link, or a concierge service you run by hand behind the scenes. Charge real money as early as you can, because paid pilots teach you more than free trials ever will. Pieter Levels ran <a href="https://levels.io/nomad-list-founder/" target="_blank" rel="noopener">Nomad List</a> as a public, crowdsourced Google spreadsheet before it was ever software, and let demand decide whether the real thing was worth building.</p>
 
-        <blockquote>Rule of thumb: if you can't get 5 people to say "tell me the moment it's ready" and mean it, you don't have validation yet — you have an idea you like.</blockquote>
+        <blockquote>Rule of thumb: if you can't get five people to say "tell me the moment it's ready" and mean it, you don't have validation yet. You have an idea you happen to like.</blockquote>
       `,
     },
     {
@@ -170,25 +170,25 @@ window.DB = {
       summary: "The unscalable, manual hustle that gets you from zero to your first paying users.",
       tags: ["customers", "traction"],
       body: `
-        <p>Your first customers won't come from ads or SEO. They come from you, doing things that don't scale. The goal isn't growth yet — it's proof, and the lessons you can only get from real users paying you.</p>
+        <p>Your first customers won't come from ads or SEO. They come from you, doing things that don't scale. The goal isn't growth yet. It's proof, plus the lessons you only get from real users paying you. This is the whole point of Paul Graham's essay <a href="https://paulgraham.com/ds.html" target="_blank" rel="noopener">Do Things that Don't Scale</a>, and it is the phase most technical founders try to skip.</p>
 
         <h3>Go to where they already are</h3>
-        <p>Don't build an audience from scratch on day one. Find the watering holes — subreddits, Slack/Discord groups, forums, niche communities — where your future customers already complain about the problem. Be genuinely helpful there for weeks before you ever mention your product.</p>
+        <p>Don't build an audience from scratch on day one. Find the watering holes where your future customers already gather and complain about the problem: subreddits, Slack and Discord groups, forums, niche communities. Be genuinely helpful there for weeks before you mention your product. The early Airbnb team went door to door in New York to sign up hosts and improve their listings by hand. That is the energy you want.</p>
 
         <h3>Do things that don't scale</h3>
         <ul>
-          <li><strong>Hand-recruit users one by one.</strong> DMs, emails, in-person. 10 great conversations beats 10,000 impressions.</li>
-          <li><strong>Onboard each customer personally.</strong> Get on a call. Set it up for them. Watch where they get stuck.</li>
-          <li><strong>Deliver an overwhelmingly good experience</strong> to a tiny number of people. Word of mouth starts here.</li>
+          <li><strong>Hand-recruit users one at a time.</strong> DMs, emails, in person. Ten great conversations beat ten thousand impressions.</li>
+          <li><strong>Onboard each customer personally.</strong> Get on a call and set it up for them. When someone agreed to try Stripe, the Collison brothers would ask for their laptop and install it on the spot. Watch where people get stuck.</li>
+          <li><strong>Over-deliver for a tiny number of people.</strong> Word of mouth starts with a handful of users who can't believe how good the experience was.</li>
         </ul>
 
         <h3>Mine your network honestly</h3>
-        <p>Not "buy my thing" — instead: "I'm building X for people who struggle with Y. Do you know anyone like that I could talk to?" Referrals to the right person are worth more than a sale to the wrong one.</p>
+        <p>Skip "buy my thing." Try "I'm building something for people who struggle with X. Do you know anyone like that I could talk to?" A referral to the right person is worth more than a sale to the wrong one.</p>
 
         <h3>Charge from customer #1</h3>
-        <p>Free users give polite, useless feedback. Paying users tell you what's actually broken and what they'd pay more for. Even a small price filters for people with the real problem.</p>
+        <p>Free users give polite, useless feedback. Paying users tell you what is actually broken and what they would pay more for. Even a small price filters for people who genuinely feel the problem. When 37signals built Basecamp they charged from launch and <a href="https://medium.com/@jasonfried/basecamp-the-origin-story-f509fdd725f8" target="_blank" rel="noopener">covered their first-year revenue target within about six weeks</a>.</p>
 
-        <p>See also: <a href="/guide/traction-channels/">the Bullseye traction framework</a> for what to do once these manual tactics start working.</p>
+        <p>See also <a href="/guide/traction-channels/">the Bullseye traction framework</a> for what to do once these manual tactics start working.</p>
       `,
     },
     {
@@ -198,23 +198,24 @@ window.DB = {
       summary: "There are ~19 ways to get customers. Most founders only seriously try one. Here's how to find yours.",
       tags: ["traction", "growth", "marketing"],
       body: `
-        <p>From the book <a href="https://www.amazon.com/dp/1591848369" target="_blank" rel="noopener">Traction</a> by Gabriel Weinberg (DuckDuckGo) and Justin Mares. The premise: there are nineteen distinct channels you can use to acquire customers, and the channel that will work for you is rarely the one you'd guess.</p>
+        <p>From the book <a href="https://www.amazon.com/dp/1591848369" target="_blank" rel="noopener">Traction</a> by Gabriel Weinberg (founder of DuckDuckGo) and Justin Mares. The premise: there are nineteen distinct channels you can use to acquire customers, and the one that works for you is rarely the one you would guess. Most startups fail not because the product is bad, but because they never found a channel that reliably brings customers.</p>
 
         <h3>The 19 channels</h3>
-        <p>Viral marketing · PR · Unconventional PR (stunts) · Search engine marketing (ads) · Social & display ads · Offline ads · SEO · Content marketing · Email marketing · Engineering as marketing (free tools) · Targeting blogs · Business development · Sales · Affiliate programs · Existing platforms (app stores, marketplaces) · Trade shows · Offline events · Speaking engagements · Community building.</p>
+        <p>Viral marketing · PR · Unconventional PR (stunts) · Search engine marketing (ads) · Social and display ads · Offline ads · SEO · Content marketing · Email marketing · Engineering as marketing (free tools) · Targeting blogs · Business development · Sales · Affiliate programs · Existing platforms (app stores, marketplaces) · Trade shows · Offline events · Speaking engagements · Community building.</p>
 
         <h3>The Bullseye method</h3>
+        <p>Picture three concentric rings and work your way inward.</p>
         <ol>
-          <li><strong>Brainstorm</strong> — for every one of the 19 channels, write down one plausible way you could use it. No dismissing yet.</li>
-          <li><strong>Rank</strong> into three rings: <em>promising</em> (worth a cheap test now), <em>possible</em> (maybe later), <em>long-shot</em> (probably not).</li>
-          <li><strong>Test</strong> — run cheap, fast experiments on your 2–3 promising channels at once. Each test should answer: roughly what does a customer cost here, and how many can this channel reach?</li>
-          <li><strong>Focus</strong> — once one channel is clearly working, pour your effort into it and ignore the rest until it stops scaling.</li>
+          <li><strong>Brainstorm.</strong> For every one of the 19 channels, write down one plausible way you could use it. No dismissing anything yet.</li>
+          <li><strong>Rank</strong> into three rings: <em>promising</em> (worth a cheap test now), <em>possible</em> (maybe later), and <em>long-shot</em> (probably not).</li>
+          <li><strong>Test.</strong> Run cheap, fast experiments on your two or three promising channels at once. Each test answers two questions: roughly what does a customer cost here, and how many customers can this channel reach?</li>
+          <li><strong>Focus.</strong> Once one channel is clearly working, pour your effort into it and ignore the rest until it stops scaling.</li>
         </ol>
 
         <h3>Why this matters for bootstrappers</h3>
-        <p>You have limited time and money, so spreading thin across ten channels guarantees failure on all of them. The discipline is: test broadly but cheaply, then commit narrowly. At any moment one channel tends to dominate your growth — find it, then milk it.</p>
+        <p>You have limited time and money, so spreading thin across ten channels guarantees mediocre results on all of them. The discipline is to test broadly but cheaply, then commit narrowly. At any given stage, one channel tends to dominate your growth. Find it, then work it until the returns flatten.</p>
 
-        <blockquote>Weinberg's rule of thumb: spend ~50% of your time on product and ~50% on traction, from the very beginning. Building is not the same as getting customers.</blockquote>
+        <blockquote>Weinberg's <a href="https://www.founderstribune.org/p/the-50-percent-rule-by-gabriel-weinberg" target="_blank" rel="noopener">50 Percent Rule</a>: spend half your time on product and half on traction, from the very beginning. Building something is not the same as getting people to use it.</blockquote>
       `,
     },
     {
@@ -224,24 +225,24 @@ window.DB = {
       summary: "You're almost certainly charging too little. How to price for a sustainable bootstrapped business.",
       tags: ["pricing", "saas", "revenue"],
       body: `
-        <p>Pricing is the single highest-leverage number in your business — and the one founders agonise over most and optimise least. A good default: pick a price that scares you slightly, then go a bit higher.</p>
+        <p>Pricing is the single highest-leverage number in your business, and the one founders agonise over most and optimise least. A reliable default: pick a price that scares you slightly, then nudge it higher.</p>
 
         <h3>Charge more than feels comfortable</h3>
-        <p>As Patrick McKenzie (patio11) famously put it: <em>"charge more."</em> Low prices attract the neediest, most price-sensitive, highest-support customers. Higher prices attract serious users and fund the business that lets you actually support them.</p>
+        <p>Patrick McKenzie's <a href="https://www.kalzumeus.com/2006/08/14/you-can-probably-stand-to-charge-more/" target="_blank" rel="noopener">You Can Probably Stand To Charge More</a> is the essay every bootstrapper should read first. Low prices attract the neediest, most price-sensitive, highest-support customers. Higher prices attract serious users and fund the business that lets you support them properly. Just don't treat "charge more" as a law of physics. As Justin Jackson <a href="https://justinjackson.ca/charge-more" target="_blank" rel="noopener">argues</a>, the right number depends on your market, your stage and who you are selling to.</p>
 
-        <h3>Price on value, not cost</h3>
-        <p>Don't price from "it took me a weekend to build." Price from what the problem costs the customer. If you save a business 5 hours a month, that's worth hundreds — not the $5 you nervously want to charge.</p>
+        <h3>Price on value, not effort</h3>
+        <p>Don't price from "it only took me a weekend to build." For software the cost of one more sale rounds to zero, so cost-plus pricing just leaves money on the table. Price from what the problem costs the customer instead. If you save a business five hours a month, that is worth hundreds, not the $5 you nervously want to charge.</p>
 
         <h3>Practical moves</h3>
         <ul>
-          <li><strong>Three tiers.</strong> A cheap anchor, a "most popular" middle (where you want people), and a premium tier that makes the middle look reasonable.</li>
-          <li><strong>Annual plans.</strong> Offer ~2 months free for paying yearly. Improves cash flow and retention dramatically.</li>
-          <li><strong>Talk to customers about price.</strong> Ask churned users if price was the reason (it usually isn't). Ask happy ones what they'd expect to pay.</li>
-          <li><strong>Raise prices regularly.</strong> Grandfather existing customers, charge new ones more. Nobody ever complained their successful product got too profitable.</li>
+          <li><strong>Three tiers.</strong> A cheap anchor, a "most popular" middle where you actually want people, and a premium tier that makes the middle look reasonable.</li>
+          <li><strong>Annual plans.</strong> Offering roughly two months free for paying yearly is the common convention. It improves cash flow and retention.</li>
+          <li><strong>Talk to customers about price.</strong> Ask churned users whether price was really the reason (it usually isn't). Ask happy ones what they expected to pay.</li>
+          <li><strong>Raise prices over time.</strong> Grandfather existing customers and charge new ones more. Nobody ever regretted a product becoming more profitable.</li>
         </ul>
 
-        <h3>B2B vs B2C</h3>
-        <p>Selling to businesses generally lets you charge far more for the same effort, because the buyer has a budget and an ROI calculation. If you can frame your product as "makes/saves money for a company," strongly prefer it as a bootstrapper.</p>
+        <h3>B2B usually beats B2C</h3>
+        <p>Selling to businesses generally lets you charge far more for the same effort, because the buyer has a budget and an ROI calculation rather than a personal wallet. If you can honestly frame your product as making or saving a company money, prefer it as a bootstrapper.</p>
       `,
     },
     {
@@ -251,27 +252,27 @@ window.DB = {
       summary: "Turn your build journey into your first marketing channel and audience.",
       tags: ["audience", "marketing", "build-in-public"],
       body: `
-        <p>Building in public means sharing the journey — progress, revenue, decisions, failures — as you go, usually on X/Twitter, LinkedIn or a newsletter. Done well, it builds an audience that becomes your launch list, feedback loop and support network.</p>
+        <p>Building in public means sharing the journey as you go: progress, revenue, decisions and failures, usually on X, LinkedIn or a newsletter. Done well, it builds an audience that becomes your launch list, your feedback loop and your support network long before you have a product to sell.</p>
 
         <h3>Why it works for bootstrappers</h3>
         <ul>
           <li><strong>Distribution before launch.</strong> By the time you ship, you already have people who care.</li>
-          <li><strong>Accountability.</strong> Public goals make you keep moving.</li>
-          <li><strong>Feedback & ideas.</strong> Your audience tells you what to build and finds your bugs.</li>
-          <li><strong>Trust.</strong> Transparency (especially revenue) earns attention and goodwill.</li>
+          <li><strong>Accountability.</strong> Public goals keep you moving on the weeks you would rather not.</li>
+          <li><strong>Feedback and ideas.</strong> Your audience tells you what to build and finds your bugs for free.</li>
+          <li><strong>Trust.</strong> Transparency, especially about revenue, earns attention and goodwill. Pieter Levels publishes <a href="https://levels.io/projects" target="_blank" rel="noopener">live revenue for every project he runs</a>, and that openness is a big part of why people pay attention.</li>
         </ul>
 
         <h3>What to actually post</h3>
-        <p>Specifics beat platitudes. "Just hit $1,200 MRR — here's the exact email that converted 40 trials" outperforms "grateful for the journey" every time.</p>
+        <p>Specifics beat platitudes. "Just hit $1,200 MRR, here is the exact email that converted 40 trials" outperforms "grateful for the journey" every time.</p>
         <ul>
           <li>Real numbers and milestones (MRR, users, churn).</li>
           <li>Decisions and the reasoning behind them.</li>
           <li>Things that went wrong and what you learned.</li>
-          <li>Useful, standalone tips your audience can apply without your product.</li>
+          <li>Useful, standalone tips your audience can apply without buying anything.</li>
         </ul>
 
         <h3>Sustainable cadence</h3>
-        <p>Consistency beats intensity. A few thoughtful posts a week for a year beats a daily burst that burns you out in a month. Pick one platform, get good at it, then expand. Communities like <a href="https://wip.co/" target="_blank" rel="noopener">WIP</a> and <a href="https://www.indiehackers.com/" target="_blank" rel="noopener">Indie Hackers</a> are built for this.</p>
+        <p>Consistency beats intensity. A few thoughtful posts a week for a year beats a daily burst that burns you out in a month. Arvid Kahl, who <a href="https://thebootstrappedfounder.com/" target="_blank" rel="noopener">built and sold a business largely in public</a>, makes the case for the calm version of this over the hustle version. Pick one platform, get good at it, then expand. Communities like <a href="https://wip.co/" target="_blank" rel="noopener">WIP</a> and <a href="https://www.indiehackers.com/" target="_blank" rel="noopener">Indie Hackers</a> are built for exactly this.</p>
       `,
     },
     {
@@ -281,26 +282,26 @@ window.DB = {
       summary: "A practical checklist for getting the most out of launch day.",
       tags: ["launch", "marketing"],
       body: `
-        <p>A <a href="https://www.producthunt.com/" target="_blank" rel="noopener">Product Hunt</a> launch won't make your business, but a good one delivers a concentrated burst of early adopters, feedback, backlinks and credibility. Treat it as one well-prepared event, not a magic button.</p>
+        <p>A <a href="https://www.producthunt.com/" target="_blank" rel="noopener">Product Hunt</a> launch won't make your business, but a good one delivers a concentrated burst of early adopters, feedback, backlinks and credibility. Treat it as one well-prepared event, not a magic button. Product Hunt's own <a href="https://www.producthunt.com/launch" target="_blank" rel="noopener">launch guide</a> is the source of truth and worth reading before you pick a date.</p>
 
         <h3>Before launch day</h3>
         <ul>
-          <li><strong>Build relationships early.</strong> Be active on PH for weeks beforehand — upvote, comment. Cold launches fall flat.</li>
-          <li><strong>Find a hunter (optional).</strong> A well-followed hunter can help, but self-launching is completely fine now.</li>
-          <li><strong>Prepare assets:</strong> a crisp tagline, a clear gallery/GIF showing the product in action, and a compelling first comment from you (the maker) explaining the "why".</li>
-          <li><strong>Line up your supporters.</strong> Tell your email list, communities and network the date — but ask them to engage genuinely, not just upvote.</li>
+          <li><strong>Build relationships early.</strong> Join and be active for weeks beforehand: visit, comment, support other makers. PH suggests joining at least three months ahead. Cold launches fall flat.</li>
+          <li><strong>You don't need a hunter.</strong> Self-launching is the norm now. By PH's own numbers, 79% of featured posts and 60% of "#1 Product of the Day" winners were self-hunted. Paying a hunter breaks their guidelines, so skip it.</li>
+          <li><strong>Prepare your assets.</strong> A tagline under 60 characters, a clear gallery or GIF showing the product in action, and a first comment from you explaining why you built it. PH reports that 70% of Product of the Day, Week and Month winners included a maker's first comment.</li>
+          <li><strong>Line up your supporters.</strong> Tell your email list, communities and network the date, then ask them to visit and comment rather than simply upvote.</li>
         </ul>
 
         <h3>On the day</h3>
         <ul>
-          <li>Launch at <strong>12:01am PT</strong> to get a full day on the leaderboard.</li>
-          <li>Reply to <em>every</em> comment, fast. Engagement signals matter and conversations convert.</li>
-          <li>Share across your channels — but never explicitly ask "please upvote" (against the rules and obvious).</li>
-          <li>Offer something for PH visitors: an extended trial or launch discount.</li>
+          <li>Launch at <strong>12:01am Pacific</strong> to get a full day on the leaderboard.</li>
+          <li>Reply to <em>every</em> comment, quickly. Conversations convert, and engagement keeps you visible.</li>
+          <li>Share across your channels, but never explicitly ask people to upvote. PH's one firm rule is that you ask them to visit and comment instead.</li>
+          <li>Offer something for visitors: an extended trial or a launch discount.</li>
         </ul>
 
         <h3>After</h3>
-        <p>Add a "#1 Product of the Day" badge to your site if you get it, follow up with everyone who signed up, and write a transparent recap (great build-in-public content). The traffic spike fades in days — the relationships and feedback last.</p>
+        <p>Add a "#1 Product of the Day" badge to your site if you earn it, follow up with everyone who signed up, and write a transparent recap (good <a href="/guide/build-in-public/">build-in-public</a> material). The traffic spike fades within days. The relationships, backlinks and feedback last much longer.</p>
       `,
     },
     {
@@ -310,114 +311,117 @@ window.DB = {
       summary: "Why search is the bootstrapper's favourite channel, and how to start.",
       tags: ["seo", "marketing", "content"],
       body: `
-        <p>SEO is slow to start but compounds — each good page keeps bringing free, high-intent traffic for years. For bootstrappers with more time than money, it's often the best long-term channel. It rewards patience and consistency over budget.</p>
+        <p>SEO is slow to start but it compounds: each good page keeps bringing free, high-intent traffic for years. For bootstrappers with more time than money, it is often the best long-term channel, because it rewards patience and consistency rather than budget.</p>
 
         <h3>Start with intent, not volume</h3>
-        <p>Target keywords where the searcher is trying to solve the exact problem you fix, even if volume is low. "Best X for Y" and "how to do Z" pages convert far better than vague high-volume terms you'll never rank for anyway.</p>
+        <p>Target keywords where the searcher is trying to solve the exact problem you fix, even when the volume looks small. As Ahrefs puts it, a keyword that doesn't match something your site can <a href="https://ahrefs.com/blog/keyword-intent/" target="_blank" rel="noopener">realistically serve and convert</a> doesn't belong in your plan, however attractive the traffic number. "Best X for Y" and "how to do Z" pages convert far better than vague head terms you will never outrank anyway.</p>
 
         <h3>Three kinds of pages that work</h3>
         <ul>
-          <li><strong>Problem/solution content:</strong> genuinely useful how-to articles for your customers' jobs-to-be-done.</li>
-          <li><strong>Comparison & alternative pages:</strong> "[Competitor] alternatives", "X vs Y". High intent — these people are ready to switch.</li>
-          <li><strong>Free tools (engineering as marketing):</strong> a small free calculator/generator that ranks and funnels users to your paid product. One of the most underrated tactics.</li>
+          <li><strong>Problem and solution content:</strong> genuinely useful how-to articles for the jobs your customers are trying to get done.</li>
+          <li><strong>Comparison and alternative pages:</strong> "[Competitor] alternatives" and "X vs Y". These searchers are already in motion and ready to switch.</li>
+          <li><strong>Free tools (engineering as marketing):</strong> a small free calculator or generator that ranks on its own and funnels users to your paid product. One of the most underrated tactics for technical founders, since you can build what others can only write about.</li>
         </ul>
 
         <h3>The fundamentals that still matter</h3>
         <ul>
-          <li>One clear topic per page, with the keyword in the title and URL.</li>
-          <li>Genuinely better content than what currently ranks — depth, clarity, examples.</li>
-          <li>Fast, mobile-friendly pages. Technical SEO basics: sitemap, clean URLs, internal links.</li>
-          <li>A few quality backlinks beat a hundred spammy ones. Earn them by being link-worthy.</li>
+          <li>One clear topic per page, with the keyword in the title and the URL.</li>
+          <li>Content that is genuinely better than what currently ranks: more depth, clarity and real examples.</li>
+          <li>Fast, mobile-friendly pages, plus the technical basics of a sitemap, clean URLs and sensible internal links.</li>
+          <li>A few quality backlinks beat a hundred spammy ones. Earn them by being worth linking to.</li>
         </ul>
 
-        <p>Use <a href="https://ahrefs.com/" target="_blank" rel="noopener">Ahrefs</a> or its free tools to find keywords and see what competitors rank for. Then publish consistently — SEO is a 6–18 month game, not a launch tactic.</p>
+        <p>Use <a href="https://ahrefs.com/" target="_blank" rel="noopener">Ahrefs</a> and its free tools to find keywords and see what competitors rank for. Then publish consistently. Ahrefs' own data puts <a href="https://ahrefs.com/blog/how-long-does-seo-take/" target="_blank" rel="noopener">first results at roughly three to six months</a>, with the real compounding gains arriving over the following year. This is a channel you start long before you need it.</p>
       `,
     },
     {
       slug: "cold-outreach",
       title: "Cold outreach that isn't spam",
 
-      summary: "How to email strangers and actually get replies — useful for B2B and partnerships.",
+      summary: "How to email strangers and actually get replies, for B2B and partnerships.",
       tags: ["sales", "customers", "b2b"],
       body: `
         <p>Cold outreach has a bad reputation because most of it is lazy and self-serving. Done with research and genuine relevance, a short cold email is still one of the most direct ways to land your first B2B customers and partners.</p>
 
         <h3>The anatomy of a reply-worthy cold email</h3>
         <ul>
-          <li><strong>Relevant trigger:</strong> open with something specific to <em>them</em> that shows you didn't blast 500 people. ("Saw you just launched X…")</li>
+          <li><strong>Relevant trigger:</strong> open with something specific to <em>them</em> that proves you didn't blast 500 people. ("Saw you just launched X.")</li>
           <li><strong>One clear problem:</strong> name a pain they plausibly have, briefly.</li>
-          <li><strong>Soft, tiny ask:</strong> not "buy my product" — instead "worth a 10-minute call?" or "mind if I send a 90-second video?"</li>
-          <li><strong>Short.</strong> 3–5 sentences. If it needs scrolling, it's too long.</li>
+          <li><strong>Soft, tiny ask:</strong> not "buy my product" but "worth a ten-minute call?" or "mind if I send a 90-second video?"</li>
+          <li><strong>Short.</strong> Three to five sentences. If it needs scrolling, it is too long.</li>
         </ul>
 
         <h3>Principles</h3>
         <ul>
-          <li><strong>Give before you ask.</strong> Lead with a useful insight, a quick audit, an intro — value first.</li>
-          <li><strong>Personalise the first line, templatise the rest.</strong> Scales without feeling like spam.</li>
-          <li><strong>Follow up 2–3 times.</strong> Most replies come from the follow-up, not the first email. Be polite, add value each time, then stop.</li>
-          <li><strong>Stay legal & respectful.</strong> Honour unsubscribes, follow GDPR/CAN-SPAM, and never buy sketchy lists.</li>
+          <li><strong>Give before you ask.</strong> Lead with a useful insight, a quick audit, or an introduction. Value first.</li>
+          <li><strong>Personalise the first line, templatise the rest.</strong> That scales without reading like spam.</li>
+          <li><strong>Follow up two or three times.</strong> A single follow-up can lift total replies by around 66%, and roughly 42% of replies come from follow-up steps rather than the first email, per <a href="https://woodpecker.co/blog/cold-email-statistics/" target="_blank" rel="noopener">Woodpecker's analysis of millions of cold emails</a>. Be polite, add something each time, then stop.</li>
+          <li><strong>Stay legal and respectful.</strong> Honour every opt-out, never buy sketchy lists, and know the rules where your recipients live.</li>
         </ul>
 
-        <blockquote>The mindset shift: you're not interrupting them to take something. You're offering a specific person a specific solution to a specific problem. If that's not true, don't send the email.</blockquote>
+        <h3>Know the rules before you hit send</h3>
+        <p>In the US, the <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" target="_blank" rel="noopener">CAN-SPAM Act</a> makes no exception for B2B email: no misleading headers or subject lines, a valid physical postal address, and a working opt-out that you honour promptly. In the EU and UK, lawful cold email usually relies on the <a href="https://gdpr-info.eu/art-6-gdpr/" target="_blank" rel="noopener">legitimate interest basis under GDPR</a>, and local ePrivacy rules vary by country, so "compliant" is not one single global standard.</p>
+
+        <blockquote>The mindset shift: you are not interrupting someone to take something. You are offering a specific person a specific solution to a specific problem. If that is not true, don't send the email.</blockquote>
       `,
     },
     {
       slug: "find-an-idea",
       title: "Finding an idea worth building",
 
-      summary: "Where good startup ideas actually come from — and how to tell a real one from a shiny one.",
+      summary: "Where good startup ideas actually come from, and how to tell a real one from a shiny one.",
       tags: ["ideas", "validation"],
       body: `
-        <p>Most founders start from the wrong end — they fall in love with a solution and go hunting for a problem to attach it to. Better ideas come from the opposite direction: notice a problem worth solving first, then build the smallest thing that solves it.</p>
+        <p>Most founders start from the wrong end. They fall in love with a solution and then hunt for a problem to attach it to. Better ideas come from the opposite direction: notice a problem worth solving first, then build the smallest thing that solves it. As Paul Graham writes in <a href="https://paulgraham.com/startupideas.html" target="_blank" rel="noopener">How to Get Startup Ideas</a>, the trick is not to think up startup ideas but to look for problems, ideally ones you have yourself.</p>
 
         <h3>Notice, don't brainstorm</h3>
-        <p>The best ideas rarely arrive in a brainstorm. They show up as friction in your own life and work — the thing you've built a spreadsheet to cope with, the task you dread, the tool you keep wishing existed. Keep a running note of these annoyances for a month and patterns emerge.</p>
+        <p>The best ideas rarely arrive in a brainstorm. They show up as friction in your own life and work: the thing you built a spreadsheet to cope with, the task you dread, the tool you keep wishing existed. Graham's warning is to avoid made-up, "sitcom" startup ideas and to trust the organic ones instead. Keep a running note of your real annoyances for a month and the patterns start to show.</p>
 
         <h3>Scratch your own itch</h3>
-        <p>Building for yourself is an unfair advantage: you <em>are</em> the customer, so you already understand the problem, the jargon and where the existing tools fall short. Plenty of bootstrapped classics — Basecamp, Nomad List — began as a founder solving their own problem.</p>
+        <p>Building for yourself is an unfair advantage. You <em>are</em> the customer, so you already understand the problem, the jargon and where the existing tools fall short. 37signals built <a href="https://medium.com/@jasonfried/basecamp-the-origin-story-f509fdd725f8" target="_blank" rel="noopener">Basecamp</a> to manage their own client projects, and Pieter Levels' Nomad List grew out of a spreadsheet he kept for his own travels. Neither began as a grand plan.</p>
 
         <h3>Sell pickaxes</h3>
-        <p>Look for places where money already moves. People and businesses happily pay to make money, save money, save time or reduce risk. An idea that sits next to an existing budget is far easier to monetise than one that needs you to create a brand-new habit from scratch.</p>
+        <p>Look for places where money already moves. People and businesses happily pay to make money, save money, save time or reduce risk. The cliché has real roots: in the California gold rush, <a href="https://en.wikipedia.org/wiki/Samuel_Brannan" target="_blank" rel="noopener">Samuel Brannan</a> got rich selling shovels and pans to prospectors rather than digging himself. An idea that sits next to an existing budget is far easier to monetise than one that asks people to form a brand-new habit.</p>
 
         <h3>Filters for a real idea</h3>
         <ul>
-          <li><strong>Is the pain frequent and urgent?</strong> Vitamins are nice; painkillers get bought.</li>
+          <li><strong>Is the pain frequent and urgent?</strong> Vitamins are nice. Painkillers get bought.</li>
           <li><strong>Can you reach the buyers?</strong> A great idea for an audience you can't access is somebody else's idea.</li>
           <li><strong>Will they pay?</strong> "That's cool" is not a business. Someone reaching for their card is.</li>
-          <li><strong>Can a tiny team ship a v1?</strong> If it needs ten engineers and a year, it isn't a bootstrap.</li>
+          <li><strong>Can a tiny team ship a v1?</strong> If it needs ten engineers and a year, it is not a bootstrap.</li>
         </ul>
 
-        <blockquote>You don't need a brilliant, original idea. You need a real problem, a reachable audience and a willingness to start small. Originality is overrated; traction isn't.</blockquote>
+        <blockquote>You don't need a brilliant, original idea. You need a real problem, a reachable audience and a willingness to start small. Originality is overrated. Traction is not.</blockquote>
 
-        <p>Got a candidate? Don't build it yet — <a href="/guide/validate-idea/">validate it first</a>. For a steady stream of structured opportunities, <a href="https://trends.vc/" target="_blank" rel="noopener">Trends.vc</a> is a good prompt.</p>
+        <p>Got a candidate? Don't build it yet. <a href="/guide/validate-idea/">Validate it first</a>. For a steady stream of structured opportunities, <a href="https://trends.vc/" target="_blank" rel="noopener">Trends.vc</a> is a good prompt.</p>
       `,
     },
     {
       slug: "metrics-that-matter",
       title: "The numbers that actually matter",
 
-      summary: "MRR, churn, LTV, CAC and runway — the small set of metrics a bootstrapper should watch, in plain English.",
+      summary: "MRR, churn, LTV, CAC and runway: the small set of metrics a bootstrapper should watch, in plain English.",
       tags: ["metrics", "saas", "revenue"],
       body: `
-        <p>Bootstrappers don't have a finance team, so you have to be your own. The good news: a handful of numbers tell you almost everything about the health of a small software business. Ignore the vanity metrics; watch these.</p>
+        <p>Bootstrappers don't have a finance team, so you have to be your own. The good news is that a handful of numbers tell you almost everything about the health of a small software business. Ignore the vanity metrics and watch these.</p>
 
-        <h3>MRR — monthly recurring revenue</h3>
-        <p>The heartbeat of a subscription business. Track it monthly and split it into new, expansion (upgrades), contraction (downgrades) and churned revenue, so you can see <em>where</em> growth comes from — not just that it happened.</p>
+        <h3>MRR: monthly recurring revenue</h3>
+        <p>The heartbeat of a subscription business. Track it monthly and split it into new, expansion (upgrades), contraction (downgrades) and churned revenue, so you can see <em>where</em> growth comes from rather than just that it happened. ChartMogul has a clear breakdown of <a href="https://chartmogul.com/blog/understanding-mrr-movements/" target="_blank" rel="noopener">these MRR movements</a> if you want the precise definitions.</p>
 
-        <h3>Churn — the silent killer</h3>
-        <p>The percentage of customers (or revenue) you lose each month. At 5% monthly churn you replace your entire customer base every ~20 months just to stand still. Small differences compound brutally, which is why lowering churn is often higher-leverage than chasing new sign-ups. See <a href="/guide/retention/">retention beats acquisition</a>.</p>
+        <h3>Churn: the silent killer</h3>
+        <p>The percentage of customers, or revenue, you lose each month. The maths is unforgiving: 5% monthly churn means you lose roughly 46% of your base over a year, so you are running hard just to stand still. Small differences compound, which is why lowering churn is often higher-leverage than chasing new sign-ups. See <a href="/guide/retention/">retention beats acquisition</a>.</p>
 
         <h3>LTV and CAC</h3>
         <ul>
           <li><strong>CAC</strong> (customer acquisition cost): everything you spent to win a customer, divided by customers won.</li>
           <li><strong>LTV</strong> (lifetime value): the total profit you expect from a customer before they churn.</li>
-          <li><strong>The ratio.</strong> A rough rule is LTV at least 3× CAC. If it costs more to acquire a customer than they're worth, growth makes you poorer, not richer.</li>
+          <li><strong>The ratio.</strong> The familiar rule of thumb is LTV of at least three times CAC. Treat it as a guide, not a law. The people who popularised it now caution that it <a href="https://www.forentrepreneurs.com/ltv-cac/" target="_blank" rel="noopener">only means much once you have a repeatable way to grow</a>. The bigger point still holds: if a customer costs more to win than they are worth, growth makes you poorer.</li>
         </ul>
 
         <h3>Runway and "default alive"</h3>
-        <p>How many months you can keep going at your current burn. Paul Graham's question is the one that matters: are you <em>default alive</em> — on track to reach profitability before the money runs out — or default dead? A bootstrapper's job is to get to default alive as fast as possible.</p>
+        <p>Runway is how many months you can keep going at your current burn. Paul Graham's question is the one that matters: are you <a href="https://paulgraham.com/aord.html" target="_blank" rel="noopener">default alive</a>, on track to reach profitability before the money runs out, or default dead? A bootstrapper's job is to get to default alive as fast as possible.</p>
 
-        <blockquote>Pick three numbers — for most SaaS that's MRR, churn and runway — and put them somewhere you see them weekly. What you measure, you manage.</blockquote>
+        <blockquote>Pick three numbers, for most SaaS that is MRR, churn and runway, and put them somewhere you see them weekly. What you measure, you manage.</blockquote>
 
         <p>Healthy metrics usually start with <a href="/guide/pricing/">pricing well</a> and keeping the customers you already have.</p>
       `,
@@ -429,24 +433,24 @@ window.DB = {
       summary: "If people can't tell what you do and who it's for, nothing else in your funnel works.",
       tags: ["positioning", "marketing"],
       body: `
-        <p>Positioning answers the question every visitor asks in the first five seconds: "what is this, who is it for, and why should I care?" Get it wrong and the best product in the world leaks visitors. Get it right and your ads, SEO and sales all suddenly work better.</p>
+        <p>Positioning answers the question every visitor asks in the first five seconds: what is this, who is it for, and why should I care? Get it wrong and the best product in the world leaks visitors. Get it right and your ads, SEO and sales all start working better at once.</p>
 
         <h3>Positioning is context, not features</h3>
-        <p>The same product can read as boring or magic depending on the frame. April Dunford's core idea in <a href="https://www.aprildunford.com/obviously-awesome" target="_blank" rel="noopener">Obviously Awesome</a>: position against the right <em>competitive alternative</em> so your best features become obviously valuable, instead of leaving customers to guess what you replace.</p>
+        <p>The same product can read as boring or magic depending on the frame. April Dunford's core idea in <a href="https://www.aprildunford.com/books" target="_blank" rel="noopener">Obviously Awesome</a> is to position against the right <em>competitive alternative</em>, the thing a customer would use if you didn't exist, so your best features become obviously valuable instead of a guessing game. Her <a href="https://www.aprildunford.com/post/a-quickstart-guide-to-positioning" target="_blank" rel="noopener">quickstart guide</a> is the fastest way in.</p>
 
         <h3>Niche down until it's uncomfortable</h3>
-        <p>"Project management for everyone" competes with giants and resonates with no one. "Project management for video agencies" can win a market you can actually reach. As a bootstrapper, a sharp niche is your single biggest unfair advantage — it makes your marketing write itself.</p>
+        <p>"Project management for everyone" competes with giants and resonates with no one. "Project management for video agencies" can win a market you can actually reach. As a bootstrapper, a sharp niche is your single biggest unfair advantage, because it makes your marketing write itself.</p>
 
         <h3>Say it like a human</h3>
         <ul>
           <li>Lead with the outcome, not the mechanism. ("Get paid on time," not "automated invoicing workflows.")</li>
-          <li>Use the words your customers use — lift them straight from interviews and reviews.</li>
-          <li>Make the headline pass the "so what?" test. If a competitor could claim the same line, it's too generic.</li>
+          <li>Use the words your customers use. Lift them straight from interviews and reviews.</li>
+          <li>Make the headline pass the "so what?" test. If a competitor could claim the same line, it is too generic.</li>
         </ul>
 
-        <blockquote>Test it cheaply: show your homepage to someone in your target market for five seconds, hide it, then ask what you do and who it's for. If they can't tell you, your positioning — not your product — is the problem.</blockquote>
+        <blockquote>Test it cheaply: show your homepage to someone in your target market for five seconds, hide it, then ask what you do and who it is for. If they can't tell you, the problem is your positioning, not your product.</blockquote>
 
-        <p>Clear positioning makes <a href="/guide/cold-outreach/">cold outreach</a> and <a href="/guide/seo-for-founders/">SEO</a> far easier, because you finally know exactly who you're talking to.</p>
+        <p>Clear positioning makes <a href="/guide/cold-outreach/">cold outreach</a> and <a href="/guide/seo-for-founders/">SEO</a> far easier, because you finally know exactly who you are talking to.</p>
       `,
     },
     {
@@ -458,20 +462,20 @@ window.DB = {
       body: `
         <p>Acquisition gets all the attention, but retention is where bootstrapped businesses are won or lost. A product people keep using compounds; a leaky bucket means you run faster every month just to stay in the same place.</p>
 
-        <h3>Why it's the cheapest growth</h3>
-        <p>Keeping a customer costs a fraction of winning a new one, and retained customers are the ones who upgrade, refer friends and forgive your rough edges. Better retention lifts LTV, which raises how much you can afford to spend acquiring the next customer — it quietly improves every other number. (See <a href="/guide/metrics-that-matter/">the numbers that matter</a>.)</p>
+        <h3>Why it is the cheapest growth</h3>
+        <p>Keeping a customer costs a fraction of winning a new one. <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">Harvard Business Review</a> puts acquisition at five to 25 times more expensive than retention, and cites Bain research that lifting retention by 5% can raise profits by anywhere from 25% to 95%. Retained customers are also the ones who upgrade, refer friends and forgive your rough edges. Better retention lifts LTV, which raises what you can afford to spend on the next customer, so it quietly improves every other number. See <a href="/guide/metrics-that-matter/">the numbers that matter</a>.</p>
 
         <h3>Get them to value, fast</h3>
-        <p>Most churn happens early, before the customer ever felt the product work. Define your "aha" moment — the first time someone gets real value — and ruthlessly shorten the path to it. Onboarding isn't a tour of your features; it's getting one job done.</p>
+        <p>Most churn happens early, before the customer ever felt the product work. Define your "aha" moment, the first time someone gets real value, and ruthlessly shorten the path to it. Facebook's well-known version was getting a new user to a handful of friends within their first week, though even that team treats the exact number as a rough marker rather than a magic threshold. Onboarding is not a tour of your features. It is getting one job done.</p>
 
         <h3>Find the leaks</h3>
         <ul>
-          <li><strong>Talk to churned users.</strong> A short "what made you cancel?" email is the cheapest research you'll ever do.</li>
-          <li><strong>Watch where people stall.</strong> Session replay and simple funnels show where the value isn't landing.</li>
-          <li><strong>Reduce reasons to leave.</strong> Habit-forming products tie into a regular trigger — see Nir Eyal's <a href="https://www.nirandfar.com/hooked/" target="_blank" rel="noopener">Hooked</a>.</li>
+          <li><strong>Talk to churned users.</strong> A short "what made you cancel?" email is the cheapest research you will ever do.</li>
+          <li><strong>Watch where people stall.</strong> Session replay and simple funnels show where the value is not landing.</li>
+          <li><strong>Reduce reasons to leave.</strong> Habit-forming products tie into a regular trigger. See Nir Eyal's <a href="https://www.nirandfar.com/hooked/" target="_blank" rel="noopener">Hooked</a> for the trigger, action, reward and investment loop.</li>
         </ul>
 
-        <blockquote>Before you pour money into the top of the funnel, plug the holes in the bottom. Fixing churn is usually the highest-ROI work a founder can do — and almost nobody wants to do it.</blockquote>
+        <blockquote>Before you pour money into the top of the funnel, plug the holes in the bottom. Fixing churn is usually the highest-ROI work a founder can do, and almost nobody wants to do it.</blockquote>
       `,
     },
     {
@@ -481,73 +485,79 @@ window.DB = {
       summary: "Algorithms giveth and taketh away. An email list is the one channel nobody can switch off.",
       tags: ["audience", "email", "marketing"],
       body: `
-        <p>Social platforms lend you an audience; they can change the rules or switch off the tap whenever they like. An email list is the one audience you actually own — a direct line to people who asked to hear from you, with no algorithm sitting in between.</p>
+        <p>Social platforms lend you an audience. They can change the rules or switch off the tap whenever they like. An email list is the one audience you actually own, a direct line to people who asked to hear from you with no algorithm sitting in between.</p>
 
         <h3>Why email still wins</h3>
         <ul>
-          <li><strong>It's owned.</strong> Export the list and it comes with you anywhere.</li>
-          <li><strong>It converts.</strong> Inbox attention beats feed attention by a mile.</li>
-          <li><strong>It's your launch list.</strong> The single best predictor of a good launch day is having people to tell.</li>
+          <li><strong>It is owned.</strong> Export the list and it comes with you anywhere.</li>
+          <li><strong>It converts.</strong> Inbox attention beats feed attention by a wide margin.</li>
+          <li><strong>It is your launch list.</strong> The single best predictor of a good launch day is having people to tell.</li>
         </ul>
 
+        <h3>You need fewer people than you think</h3>
+        <p>Kevin Kelly's <a href="https://kk.org/thetechnium/1000-true-fans/" target="_blank" rel="noopener">1,000 True Fans</a> makes the point well: a true fan is someone who will buy whatever you make, and roughly a thousand of them at around $100 a year is a real living. The figure is illustrative rather than a promise, but the shape of it is right. You do not need a million followers. You need a few hundred people who genuinely care.</p>
+
         <h3>Start collecting before you have anything to sell</h3>
-        <p>Put a simple "get notified" form on your landing page from day one, paired with a reason to subscribe — a useful guide, a free tool, a behind-the-scenes build log. Every visitor who leaves without joining is one you'll have to pay to reach again later.</p>
+        <p>Put a simple "get notified" form on your landing page from day one, paired with a reason to subscribe: a useful guide, a free tool, a behind-the-scenes build log. Every visitor who leaves without joining is someone you will have to pay to reach again later. Nathan Barry, who founded the email company now called Kit, argues bluntly in <a href="https://nathanbarry.com/authority/" target="_blank" rel="noopener">Authority</a> that you cannot sell much without an audience to sell to.</p>
 
         <h3>Give people a reason to stay</h3>
-        <p>An audience is earned with consistent usefulness, not extracted with constant pitching. Share what you're learning, the specifics behind your wins and losses, things readers can apply even if they never buy. It pairs naturally with <a href="/guide/build-in-public/">building in public</a> — the build log feeds the list, and the list becomes your first customers.</p>
+        <p>An audience is earned with consistent usefulness, not extracted with constant pitching. Share what you are learning, the specifics behind your wins and losses, things readers can apply even if they never buy. It pairs naturally with <a href="/guide/build-in-public/">building in public</a>: the build log feeds the list, and the list becomes your first customers.</p>
 
-        <blockquote>The best time to start your email list was the day you had the idea. The second best time is today — even if there are only ten people on it, those ten know you exist, which puts them ahead of everyone else.</blockquote>
+        <blockquote>The best time to start your email list was the day you had the idea. The second best time is today. Even ten subscribers is ten people who know you exist, which puts them ahead of everyone else.</blockquote>
       `,
     },
     {
       slug: "making-the-leap",
       title: "Quitting your job: making the leap",
 
-      summary: "When to go full-time on your bootstrapped business — and how to do it without betting the house.",
+      summary: "When to go full-time on your bootstrapped business, and how to do it without betting the house.",
       tags: ["mindset", "money"],
       body: `
         <p>The romantic story is quitting your job in a blaze of conviction. The bootstrapper's version is less dramatic and far smarter: de-risk the leap so thoroughly that going full-time becomes the obvious, almost boring next step.</p>
 
         <h3>Build on the side first</h3>
-        <p>Your job is the best startup grant you'll ever get — it funds your life with no equity, no interest and no investor calls. Use that safety to validate, launch and find your first paying customers in evenings and weekends, while the downside is still capped.</p>
+        <p>Your job is the best startup grant you will ever get. It funds your life with no equity, no interest and no investor calls. Use that safety to validate, launch and find your first paying customers in evenings and weekends, while the downside is still capped.</p>
 
         <h3>Know your number</h3>
-        <p>Work out your <em>ramen number</em>: the monthly profit that covers your essential personal costs. That line matters far more than any vanity revenue figure — it's the point at which the business can keep you alive. Track it against your <a href="/guide/metrics-that-matter/">runway and MRR</a>.</p>
+        <p>Work out your ramen number: the monthly profit that covers your essential personal costs. Paul Graham popularised <a href="https://paulgraham.com/ramenprofitable.html" target="_blank" rel="noopener">ramen profitability</a> as the point where a business earns just enough to pay the founders' living expenses. It is not full business profitability, but it is the line that buys you time and removes your dependence on anyone else. Track it against your <a href="/guide/metrics-that-matter/">runway and MRR</a>.</p>
 
         <h3>Pick a trigger, not a feeling</h3>
         <ul>
-          <li><strong>Revenue trigger:</strong> e.g. "MRR covers my ramen number for three consecutive months."</li>
-          <li><strong>Savings trigger:</strong> 6–12 months of runway in the bank so a slow month doesn't trigger a panic.</li>
-          <li><strong>Time trigger:</strong> the side project is clearly capped by the hours you can't give it.</li>
+          <li><strong>Revenue trigger:</strong> for example, MRR covers your ramen number for three consecutive months.</li>
+          <li><strong>Savings trigger:</strong> six to twelve months of runway in the bank, so a slow month does not become a panic.</li>
+          <li><strong>Time trigger:</strong> the side project is clearly capped by the hours you cannot give it.</li>
         </ul>
 
-        <blockquote>Don't leap on a good week of feelings — leap on a number you set in advance, when you were thinking clearly. The goal isn't to be brave; it's to make the brave thing safe.</blockquote>
+        <blockquote>Don't leap on a good week of feelings. Leap on a number you set in advance, when you were thinking clearly. The goal is not to be brave. It is to make the brave thing safe.</blockquote>
       `,
     },
     {
       slug: "ai-leverage",
       title: "Ship faster with AI",
 
-      summary: "How a solo founder can use AI as leverage across building, marketing and support — without shipping slop.",
+      summary: "How a solo founder can use AI as leverage across building, marketing and support, without shipping slop.",
       tags: ["ai", "productivity", "build-in-public"],
       body: `
-        <p>For a solo or tiny team, AI is the closest thing to hiring a junior teammate for every role at once — engineer, marketer, support rep, researcher. Used well, it widens what one person can ship. Used lazily, it floods the internet with forgettable slop. The difference is judgement.</p>
+        <p>For a solo or tiny team, AI is the closest thing to hiring a junior teammate for every role at once: engineer, marketer, support rep, researcher. Used well, it widens what one person can ship. Used lazily, it floods the internet with forgettable slop. The difference is judgement.</p>
 
         <h3>Where it actually helps</h3>
         <ul>
-          <li><strong>Building:</strong> scaffolding, boilerplate, tests, debugging and learning an unfamiliar API far faster.</li>
+          <li><strong>Building:</strong> scaffolding, boilerplate, tests, debugging, and learning an unfamiliar API far faster.</li>
           <li><strong>Marketing:</strong> first drafts, turning one post into ten, keyword and competitor research, ad variations to test.</li>
-          <li><strong>Support &amp; ops:</strong> drafting replies, summarising feedback, triaging the inbox, turning docs into an FAQ.</li>
+          <li><strong>Support and ops:</strong> drafting replies, summarising feedback, triaging the inbox, turning docs into an FAQ.</li>
           <li><strong>Thinking:</strong> a tireless sparring partner for pressure-testing positioning, pricing and plans.</li>
         </ul>
 
         <h3>Keep a human in the loop</h3>
-        <p>AI is a force multiplier, not an autopilot. It's confidently wrong often enough that you have to stay the editor: ship nothing you haven't checked, and don't let it talk to customers unsupervised in the early days. The point is to do more of the work that needs a human by handing it less of the work that doesn't.</p>
+        <p>AI is a force multiplier, not an autopilot. It is confidently wrong often enough that you have to stay the editor. As Simon Willison points out, code hallucinations are the <a href="https://simonwillison.net/2025/Mar/2/hallucinations-in-code/" target="_blank" rel="noopener">least dangerous kind of mistake</a>, because they fail loudly, while the subtle logic errors slip through unless you actually exercise and test the work. Ship nothing you have not checked, and don't let AI talk to customers unsupervised in the early days.</p>
+
+        <h3>Don't ship slop</h3>
+        <p>Willison defines <a href="https://simonwillison.net/2024/May/8/slop/" target="_blank" rel="noopener">slop</a> as AI content mindlessly generated and pushed on people who didn't ask for it. The antidote is ownership: put your name on what you publish and stake your credibility on it. AI that helps you think is leverage. AI output you forward unread is the failure mode.</p>
 
         <h3>Don't automate the unscalable too early</h3>
-        <p>The manual, unscalable work that wins your <a href="/guide/first-customers/">first customers</a> — the personal onboarding calls, the hand-written emails — is exactly where you learn what to build. Automate it once you understand it, not before.</p>
+        <p>The manual, unscalable work that wins your <a href="/guide/first-customers/">first customers</a>, the personal onboarding calls and the hand-written emails, is exactly where you learn what to build. Automate it once you understand it, not before.</p>
 
-        <blockquote>Use AI to clear the grunt work so you can spend more time on the two things it can't do for you: talking to customers and deciding what to build. Leverage is the goal; slop is the failure mode.</blockquote>
+        <blockquote>Use AI to clear the grunt work so you can spend more time on the two things it cannot do for you: talking to customers and deciding what to build. Leverage is the goal. Slop is the failure mode.</blockquote>
       `,
     },
   ],
