@@ -60,6 +60,10 @@ function buildPage(route) {
   // bake the routed content
   html = html.replace(/<main\b[^>]*id="content"[^>]*>[\s\S]*?<\/main>/,
     () => `<main class="content" id="content" tabindex="-1">${content}</main>`);
+  // bake the sidebar nav so its internal links are in the static HTML (real,
+  // crawlable links — not JS-only); app.js re-renders the same markup on boot
+  html = html.replace(/<nav\b[^>]*id="nav"[^>]*>[\s\S]*?<\/nav>/,
+    () => `<nav id="nav">${BF.navHTML(route)}</nav>`);
   // per-route title + description
   html = html.replace(/<title>[\s\S]*?<\/title>/,
     () => `<title>${BF.esc(head.title)}</title>`);

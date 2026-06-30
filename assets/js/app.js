@@ -62,21 +62,7 @@
 
   /* ── nav ─────────────────────────────────────────────────────────── */
   function buildNav() {
-    const route = currentRoute();
-    const homeActive = route.name === "home";
-    let html = `<div class="nav-section">browse</div>
-      <a class="nav-link${homeActive ? " active" : ""}"${homeActive ? ' aria-current="page"' : ""} href="${BASE}/">home</a>`;
-
-    DB.categories.forEach((c) => {
-      const active = route.name === "category" && route.id === c.id;
-      html += `<a class="nav-link${active ? " active" : ""}"${active ? ' aria-current="page"' : ""} href="${BASE}/${c.id}/">${esc(c.label)}<span class="count">${DB[c.id].length}</span></a>`;
-    });
-
-    const guidesActive = route.name === "guides" || route.name === "guide";
-    html += `<div class="nav-section">learn</div>
-      <a class="nav-link${guidesActive ? " active" : ""}"${guidesActive ? ' aria-current="page"' : ""} href="${BASE}/guides/">guides<span class="count">${DB.guides.length}</span></a>`;
-
-    els.nav.innerHTML = html;
+    els.nav.innerHTML = BF.navHTML(currentRoute());
   }
 
   /* ── search view (client-side only; not a crawlable route) ────────── */

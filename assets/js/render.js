@@ -132,7 +132,7 @@
 
     return `
       <div class="content-inner">
-        <div class="page-head"><h2>${esc(cat.label)}</h2><p class="page-sub">${esc(cat.blurb)}</p></div>
+        <div class="page-head"><h1>${esc(cat.label)}</h1><p class="page-sub">${esc(cat.blurb)}</p></div>
         <p class="results-meta">${items.length} ${items.length === 1 ? "entry" : "entries"}</p>
         <div class="list">${items.map((it) => rowHTML(it, null, id)).join("")}</div>
       </div>`;
@@ -143,7 +143,7 @@
       navRowHTML(`${BASE}/guide/${g.slug}/`, g.title, "", g.summary)).join("");
     return `
       <div class="content-inner">
-        <div class="page-head"><h2>guides</h2><p class="page-sub">Opinionated, tactical guides. Less directory, more wiki.</p></div>
+        <div class="page-head"><h1>guides</h1><p class="page-sub">Opinionated, tactical guides. Less directory, more wiki.</p></div>
         <div class="list">${guides}</div>
       </div>`;
   }
@@ -201,6 +201,26 @@
   /* ── site footer (removed) ─ */
   function footerHTML() {
     return "";
+  }
+
+  /* ── sidebar nav ─────────────────────────────────────────────────── */
+  // Shared so the prerenderer bakes real internal links into the static HTML
+  // (crawlable + spreads link equity, not JS-only) and app.js re-renders the
+  // identical markup client-side with the active route highlighted.
+  function navHTML(route) {
+    route = route || {};
+    const link = (href, label, active, count) =>
+      `<a class="nav-link${active ? " active" : ""}"${active ? ' aria-current="page"' : ""} href="${href}">${label}${count != null ? `<span class="count">${count}</span>` : ""}</a>`;
+    let html = `<div class="nav-section">browse</div>` +
+      link(`${BASE}/`, "home", route.name === "home", null);
+    DB.categories.forEach((c) => {
+      html += link(`${BASE}/${c.id}/`, esc(c.label),
+        route.name === "category" && route.id === c.id, DB[c.id].length);
+    });
+    html += `<div class="nav-section">learn</div>` +
+      link(`${BASE}/guides/`, "guides",
+        route.name === "guides" || route.name === "guide", DB.guides.length);
+    return html;
   }
 
   /* ── dispatcher ──────────────────────────────────────────────────── */
@@ -336,7 +356,7 @@
 
   root.BF = {
     BASE, BASE_URL, esc, slugify, stripTags,
-    rowHTML, navRowHTML, footerHTML,
+    rowHTML, navRowHTML, navHTML, footerHTML,
     pageContent, renderNotFound, headFor, allRoutes,
   };
 })(typeof window !== "undefined" ? window : globalThis);
