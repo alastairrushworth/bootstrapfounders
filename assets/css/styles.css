@@ -103,7 +103,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .icon-btn {
   display: grid; place-items: center;
-  width: 34px; height: 34px;
+  width: 40px; height: 40px;
   background: transparent; border: 1px solid var(--line);
   border-radius: var(--radius); color: var(--text-dim);
   font-size: 1rem; cursor: pointer; transition: color .12s, border-color .12s;
@@ -173,8 +173,8 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .block-sub { color: var(--text-dim); margin: 0 0 18px; font-size: .88rem; }
 .block { margin-bottom: 46px; }
 
-.page-head h2 { font-size: 1.4rem; letter-spacing: -.01em; margin: 0 0 6px; font-weight: 700; text-transform: lowercase; }
-.page-head h2::before { content: "# "; color: var(--accent); }
+.page-head h1, .page-head h2 { font-size: 1.4rem; letter-spacing: -.01em; margin: 0 0 6px; font-weight: 700; text-transform: lowercase; }
+.page-head h1::before, .page-head h2::before { content: "# "; color: var(--accent); }
 .page-sub { color: var(--text-dim); margin: 0 0 18px; font-size: .9rem; max-width: 64ch; }
 
 .results-meta { color: var(--text-faint); font-size: .78rem; margin: 0 0 4px; }
@@ -261,6 +261,13 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 @media (max-width: 520px) {
   .content { padding: 24px 14px 60px; }
+}
+
+/* iOS Safari zooms the viewport when an input with font-size < 16px gets
+   focus; bump the search field to 16px on touch devices so focusing it
+   doesn't jump-zoom the page. Desktop keeps the smaller field. */
+@media (pointer: coarse) {
+  #search { font-size: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
