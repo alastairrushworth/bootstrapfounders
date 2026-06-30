@@ -86,7 +86,12 @@ Tags `must-read`, `must-listen`, `must-watch`, `must-do` and `free` get a highli
 ```
 
 Inside a guide `body`, link to another guide with a real path —
-`<a href="/guide/<slug>/">…</a>` — not a `#` fragment.
+`<a href="/guide/<slug>/">…</a>` — not a `#` fragment. The prerenderer prefixes
+the base path automatically, so author these links from the site root.
+
+Optionally add `updated: "YYYY-MM-DD"` to a guide to pin its sitemap `<lastmod>`
+and JSON-LD `dateModified`. Without it, every page tracks the last time
+`data.js` changed in git, so unrelated CSS/JS deploys don't bump freshness.
 
 **Add a whole category** by appending to the `categories` array and adding a matching array keyed by its `id`. New categories and guides are picked up by the prerenderer and sitemap automatically.
 

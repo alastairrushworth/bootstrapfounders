@@ -13,9 +13,11 @@
   const BASE_URL = ORIGIN + BASE;           // canonical site root (origin + base)
   const REPO = "https://github.com/alastairrushworth/bootstrapfounders";
   const OG_IMAGE = BASE_URL + "/assets/og.png";
-  // set by the prerenderer (global.BF_BUILD_DATE) so JSON-LD/sitemap carry a
-  // freshness date; empty in the browser, where JSON-LD is never re-emitted.
+  // set by the prerenderer so JSON-LD carries a freshness date; empty in the
+  // browser, where JSON-LD is never re-emitted. CONTENT_DATE is the last time
+  // data.js changed (per git); a guide may override it with its own `updated`.
   const BUILD_DATE = root.BF_BUILD_DATE || "";
+  const CONTENT_DATE = root.BF_CONTENT_DATE || BUILD_DATE;
 
   /* ── helpers ─────────────────────────────────────────────────────── */
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
@@ -324,7 +326,8 @@
             logo: { "@type": "ImageObject", url: BASE_URL + "/assets/icons/icon-512.png" },
           },
         };
-        if (BUILD_DATE) article.dateModified = BUILD_DATE;
+        const modified = g.updated || CONTENT_DATE;
+        if (modified) article.dateModified = modified;
         return {
           title: g.title + TITLE_SUFFIX,
           description: g.summary,
