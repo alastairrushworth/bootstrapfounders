@@ -27,6 +27,18 @@
   // strip tags + collapse whitespace — for meta descriptions built from guide bodies
   const stripTags = (s) => String(s).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 
+  // Guide bodies are authored with root-relative internal links (e.g.
+  // href="/guide/<slug>/", per the README convention). The site is mounted
+  // under BASE, so prefix BASE onto any root-relative href/src that isn't
+  // already based or protocol-relative. Keeps body content base-agnostic and
+  // lets app.js's link interceptor (which only catches BASE-prefixed links)
+  // route them client-side instead of hard-navigating to a 404.
+  const baseifyLinks = (html) =>
+    String(html).replace(/\b(href|src)="(\/[^"]*)"/g, (m, attr, p) =>
+      p.startsWith("//") || p === BASE || p.startsWith(BASE + "/")
+        ? m
+        : `${attr}="${BASE}${p}"`);
+
   // these tags get the accent highlight on rows
   const FLAG_TAGS = new Set(["must-read", "must-listen", "must-watch", "must-do", "free"]);
 
@@ -170,7 +182,7 @@
           <h1>${esc(g.title)}</h1>
           <p class="lede-text">${esc(g.summary)}</p>
           <hr class="rule" />
-          <div class="article-body">${g.body}</div>
+          <div class="article-body">${baseifyLinks(g.body)}</div>
           <nav class="article-foot" aria-label="guide navigation">
             ${prev ? `<a class="prev" href="${BASE}/guide/${prev.slug}/">&larr; ${esc(prev.title)}</a>` : `<a href="${BASE}/guides/">&larr; all guides</a>`}
             ${next ? `<a class="next" href="${BASE}/guide/${next.slug}/">${esc(next.title)} &rarr;</a>` : `<a class="next" href="${BASE}/guides/">all guides &rarr;</a>`}
