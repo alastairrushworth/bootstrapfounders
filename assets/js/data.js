@@ -466,7 +466,7 @@ window.DB = {
         <p>Keeping a customer costs a fraction of winning a new one. <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank" rel="noopener">Harvard Business Review</a> puts acquisition at five to 25 times more expensive than retention, and cites Bain research that lifting retention by 5% can raise profits by anywhere from 25% to 95%. Retained customers are also the ones who upgrade, refer friends and forgive your rough edges. Better retention lifts LTV, which raises what you can afford to spend on the next customer, so it quietly improves every other number. See <a href="/guide/metrics-that-matter/">the numbers that matter</a>.</p>
 
         <h3>Get them to value, fast</h3>
-        <p>Most churn happens early, before the customer ever felt the product work. Define your "aha" moment, the first time someone gets real value, and ruthlessly shorten the path to it. Facebook's well-known version was getting a new user to a handful of friends within their first week, though even that team treats the exact number as a rough marker rather than a magic threshold. Onboarding is not a tour of your features. It is getting one job done.</p>
+        <p>Most churn happens early, before the customer ever felt the product work. Define your "aha" moment, the first time someone gets real value, and ruthlessly shorten the path to it. Facebook's famous version was getting a new user to seven friends in their first ten days, though as Mixpanel cautions, such <a href="https://mixpanel.com/blog/magic-numbers-are-an-illusion/" target="_blank" rel="noopener">magic numbers are a rough marker rather than a literal threshold</a>. Onboarding is not a tour of your features. It is getting one job done.</p>
 
         <h3>Find the leaks</h3>
         <ul>
@@ -516,7 +516,7 @@ window.DB = {
         <p>The romantic story is quitting your job in a blaze of conviction. The bootstrapper's version is less dramatic and far smarter: de-risk the leap so thoroughly that going full-time becomes the obvious, almost boring next step.</p>
 
         <h3>Build on the side first</h3>
-        <p>Your job is the best startup grant you will ever get. It funds your life with no equity, no interest and no investor calls. Use that safety to validate, launch and find your first paying customers in evenings and weekends, while the downside is still capped.</p>
+        <p>Your job is the best startup grant you will ever get. It funds your life with no equity, no interest and no investor calls. Use that safety to validate, launch and find your first paying customers in evenings and weekends, while the downside is still capped. Rob Walling's <a href="https://robwalling.com/essays/2015/03/26/the-stair-step-method-of-bootstrapping" target="_blank" rel="noopener">stair-step method</a> formalises this: start with a small one-off product on a single marketing channel, use it to buy back your time, and only then climb to recurring revenue.</p>
 
         <h3>Know your number</h3>
         <p>Work out your ramen number: the monthly profit that covers your essential personal costs. Paul Graham popularised <a href="https://paulgraham.com/ramenprofitable.html" target="_blank" rel="noopener">ramen profitability</a> as the point where a business earns just enough to pay the founders' living expenses. It is not full business profitability, but it is the line that buys you time and removes your dependence on anyone else. Track it against your <a href="/guide/metrics-that-matter/">runway and MRR</a>.</p>
