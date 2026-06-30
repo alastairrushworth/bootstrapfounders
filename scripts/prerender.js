@@ -11,6 +11,7 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
+const { execSync } = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
@@ -21,12 +22,31 @@ global.window = global;
 // and we reuse it for sitemap <lastmod>. Set BEFORE render.js loads.
 const BUILD_DATE = new Date().toISOString().slice(0, 10);
 global.BF_BUILD_DATE = BUILD_DATE;
+// Last time the *content* (data.js) actually changed, per git. Sitemap
+// <lastmod> and JSON-LD dateModified track this instead of the build date, so
+// a deploy that only touches CSS/JS doesn't tell crawlers every page changed.
+// Falls back to the build date when git history is unavailable (e.g. a shallow
+// checkout that didn't touch data.js, or building outside a repo).
+const CONTENT_DATE = gitDateOf("assets/js/data.js") || BUILD_DATE;
+global.BF_CONTENT_DATE = CONTENT_DATE;
 require(path.join(ROOT, "assets/js/data.js"));   // sets window.DB
 require(path.join(ROOT, "assets/js/render.js"));  // sets window.BF
 const { BF } = global;
 const DB = global.DB;
 
 const shell = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+
+/* Last git commit date (YYYY-MM-DD) that touched a file, or "" if unknown. */
+function gitDateOf(relPath) {
+  try {
+    const out = execSync(`git log -1 --format=%cs -- ${relPath}`, {
+      cwd: ROOT, stdio: ["ignore", "pipe", "ignore"],
+    }).toString().trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : "";
+  } catch (e) {
+    return "";
+  }
+}
 
 /* ── per-route output path (directory-style URLs) ───────────────────── */
 function outPath(route) {
@@ -85,9 +105,19 @@ function writeFile(rel, body) {
 }
 
 /* ── sitemap ────────────────────────────────────────────────────────── */
+// A page's <lastmod> is its content's last-changed date: a guide may pin its
+// own `updated` ("YYYY-MM-DD"); everything else tracks when data.js changed.
+function lastmodFor(route) {
+  if (route.name === "guide") {
+    const g = DB.guides.find((x) => x.slug === route.slug);
+    if (g && g.updated) return g.updated;
+  }
+  return CONTENT_DATE;
+}
+
 function buildSitemap(routes) {
   const urls = routes
-    .map((r) => `  <url><loc>${BF.BASE_URL}${BF.headFor(r).path}</loc><lastmod>${BUILD_DATE}</lastmod></url>`)
+    .map((r) => `  <url><loc>${BF.BASE_URL}${BF.headFor(r).path}</loc><lastmod>${lastmodFor(r)}</lastmod></url>`)
     .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

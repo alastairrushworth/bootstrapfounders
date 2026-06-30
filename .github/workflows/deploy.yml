@@ -27,6 +27,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # full history so the prerenderer can read data.js's last-change date
+          # (used for sitemap <lastmod> / JSON-LD dateModified)
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
